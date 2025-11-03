@@ -19,7 +19,7 @@ export default function FeaturesSection() {
             </span>
           </motion.div>
           <h2 className='text-4xl font-bold mb-4' style={{ color: 'var(--brand-light-gray)' }}>
-            为什么选择 FLUXTRADER？
+            为什么选择 FluxTrader？
           </h2>
           <p className='text-lg' style={{ color: 'var(--text-secondary)' }}>
             开源、透明、社区驱动的 AI 交易操作系统

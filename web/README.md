@@ -1,4 +1,4 @@
-# FLUXTRADER Web Dashboard
+# FluxTrader Web Dashboard
 
 基于 Vite + React + TypeScript 的 AI 自动交易监控面板
 

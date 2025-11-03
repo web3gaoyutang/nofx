@@ -29,7 +29,7 @@ export function LandingPage() {
             准备好定义 AI 交易的未来吗？
           </motion.h2>
           <motion.p className='text-xl mb-12' style={{ color: 'var(--text-secondary)' }} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
-            从加密市场起步，扩展到 TradFi。FLUXTRADER 是 AgentFi 的基础架构。
+            从加密市场起步，扩展到 TradFi。FluxTrader 是 AgentFi 的基础架构。
           </motion.p>
           <div className='flex flex-wrap justify-center gap-4'>
             <motion.button onClick={() => setShowLoginModal(true)} className='flex items-center gap-2 px-10 py-4 rounded-lg font-semibold text-lg' style={{ background: 'var(--brand-yellow)', color: 'var(--brand-black)' }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>

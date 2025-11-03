@@ -199,7 +199,7 @@ function App() {
             {/* Left - Logo and Title */}
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 flex items-center justify-center">
-                <img src="/icons/fluxtrader.svg?v=2" alt="FLUXTRADER" className="w-8 h-8" />
+                <img src="/icons/fluxtrader.svg?v=2" alt="FluxTrader" className="w-8 h-8" />
               </div>
               <div>
                 <h1 className="text-xl font-bold" style={{ color: '#EAECEF' }}>

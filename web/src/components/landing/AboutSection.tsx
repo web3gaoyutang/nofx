@@ -31,7 +31,7 @@ export default function AboutSection() {
                 className='text-sm font-semibold'
                 style={{ color: 'var(--brand-yellow)' }}
               >
-                关于 FLUXTRADER
+                关于 FluxTrader
               </span>
             </motion.div>
 
@@ -39,13 +39,13 @@ export default function AboutSection() {
               className='text-4xl font-bold'
               style={{ color: 'var(--brand-light-gray)' }}
             >
-              什么是 FLUXTRADER？
+              什么是 FluxTrader？
             </h2>
             <p
               className='text-lg leading-relaxed'
               style={{ color: 'var(--text-secondary)' }}
             >
-              FLUXTRADER 不是另一个交易机器人，而是 AI 交易的 'Linux' ——
+              FluxTrader 不是另一个交易机器人，而是 AI 交易的 'Linux' ——
               一个透明、可信任的开源 OS，提供统一的 '决策-风险-执行'
               层，支持所有资产类别。
             </p>

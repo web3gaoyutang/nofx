@@ -30,7 +30,7 @@ export default function HowItWorksSection() {
       <div className='max-w-7xl mx-auto'>
         <motion.div className='text-center mb-16' initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <h2 className='text-4xl font-bold mb-4' style={{ color: 'var(--brand-light-gray)' }}>
-            如何开始使用 FLUXTRADER
+            如何开始使用 FluxTrader
           </h2>
           <p className='text-lg' style={{ color: 'var(--text-secondary)' }}>
             四个简单步骤，开启 AI 自动交易之旅
@@ -64,7 +64,7 @@ export default function HowItWorksSection() {
               重要风险提示
             </div>
             <p className='text-sm' style={{ color: 'var(--text-secondary)' }}>
-              dev 分支不稳定，勿用无法承受损失的资金。FLUXTRADER 非托管，无官方策略。交易有风险，投资需谨慎。
+              dev 分支不稳定，勿用无法承受损失的资金。FluxTrader 非托管，无官方策略。交易有风险，投资需谨慎。
             </p>
           </div>
         </motion.div>

@@ -11,7 +11,7 @@ export default function HeaderBar({ onLoginClick }: { onLoginClick: () => void }
         <div className='flex items-center justify-between h-16'>
           {/* Logo */}
           <div className='flex items-center gap-3'>
-            <img src='/images/logo.png' alt='FLUXTRADER Logo' className='w-8 h-8' />
+            <img src='/images/logo.png' alt='FluxTrader Logo' className='w-8 h-8' />
             <span className='text-xl font-bold' style={{ color: 'var(--brand-yellow)' }}>
               FluxTrader
             </span>

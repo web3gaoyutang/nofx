@@ -39,7 +39,7 @@ export default function HeroSection() {
             </h1>
 
             <motion.p className='text-xl leading-relaxed' style={{ color: 'var(--text-secondary)' }} variants={fadeInUp}>
-              FLUXTRADER 是 AI 交易的未来标准——一个开放、社区驱动的代理式交易操作系统。支持 Binance、Aster DEX 等交易所，
+              FluxTrader 是 AI 交易的未来标准——一个开放、社区驱动的代理式交易操作系统。支持 Binance、Aster DEX 等交易所，
               自托管、多代理竞争，让 AI 为你自动决策、执行和优化交易。
             </motion.p>
 
@@ -73,7 +73,7 @@ export default function HeroSection() {
           </motion.div>
 
           {/* Right Visual */}
-          <motion.img src='/images/main.png' alt='FLUXTRADER Platform' className='w-full opacity-90' whileHover={{ scale: 1.05, rotate: 5 }} transition={{ type: 'spring', stiffness: 300 }} />
+          <motion.img src='/images/main.png' alt='FluxTrader Platform' className='w-full opacity-90' whileHover={{ scale: 1.05, rotate: 5 }} transition={{ type: 'spring', stiffness: 300 }} />
         </div>
       </div>
     </section>
