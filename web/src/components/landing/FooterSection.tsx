@@ -8,10 +8,10 @@ export default function FooterSection() {
       <div className='max-w-[1200px] mx-auto px-6 py-10'>
         {/* Brand */}
         <div className='flex items-center gap-3 mb-8'>
-          <img src='/images/logo.png' alt='NOFX Logo' className='w-8 h-8' />
+          <img src='/images/logo.png' alt='FLUXTRADER Logo' className='w-8 h-8' />
           <div>
             <div className='text-lg font-bold' style={{ color: '#EAECEF' }}>
-              NOFX
+              FLUXTRADER
             </div>
             <div className='text-xs' style={{ color: '#848E9C' }}>
               AI 交易的未来标准
@@ -32,7 +32,7 @@ export default function FooterSection() {
               <li>
                 <a
                   className='hover:text-[#F0B90B]'
-                  href='https://github.com/tinkle-community/nofx'
+                  href='https://github.com/tinkle-community/fluxtrader'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -42,7 +42,7 @@ export default function FooterSection() {
               <li>
                 <a
                   className='hover:text-[#F0B90B]'
-                  href='https://t.me/nofx_dev_community'
+                  href='https://t.me/fluxtrader_dev_community'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -52,7 +52,7 @@ export default function FooterSection() {
               <li>
                 <a
                   className='hover:text-[#F0B90B]'
-                  href='https://x.com/nofx_ai'
+                  href='https://x.com/fluxtrader_ai'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -73,7 +73,7 @@ export default function FooterSection() {
               <li>
                 <a
                   className='hover:text-[#F0B90B]'
-                  href='https://github.com/tinkle-community/nofx/blob/main/README.md'
+                  href='https://github.com/tinkle-community/fluxtrader/blob/main/README.md'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -83,7 +83,7 @@ export default function FooterSection() {
               <li>
                 <a
                   className='hover:text-[#F0B90B]'
-                  href='https://github.com/tinkle-community/nofx/issues'
+                  href='https://github.com/tinkle-community/fluxtrader/issues'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -93,7 +93,7 @@ export default function FooterSection() {
               <li>
                 <a
                   className='hover:text-[#F0B90B]'
-                  href='https://github.com/tinkle-community/nofx/pulls'
+                  href='https://github.com/tinkle-community/fluxtrader/pulls'
                   target='_blank'
                   rel='noopener noreferrer'
                 >

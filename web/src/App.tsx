@@ -171,7 +171,7 @@ function App() {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ background: '#0B0E11' }}>
         <div className="text-center">
-          <img src="/images/logo.png" alt="NoFx Logo" className="w-16 h-16 mx-auto mb-4 animate-pulse" />
+          <img src="/images/logo.png" alt="FluxTrader Logo" className="w-16 h-16 mx-auto mb-4 animate-pulse" />
           <p style={{ color: '#EAECEF' }}>{t('loading', language)}</p>
         </div>
       </div>
@@ -199,7 +199,7 @@ function App() {
             {/* Left - Logo and Title */}
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 flex items-center justify-center">
-                <img src="/icons/nofx.svg?v=2" alt="NOFX" className="w-8 h-8" />
+                <img src="/icons/fluxtrader.svg?v=2" alt="FLUXTRADER" className="w-8 h-8" />
               </div>
               <div>
                 <h1 className="text-xl font-bold" style={{ color: '#EAECEF' }}>
@@ -340,7 +340,7 @@ function App() {
           <p className="mt-1">{t('footerWarning', language)}</p>
           <div className="mt-4">
             <a
-              href="https://github.com/tinkle-community/nofx"
+              href="https://github.com/tinkle-community/fluxtrader"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-3 py-2 rounded text-sm font-semibold transition-all hover:scale-105"

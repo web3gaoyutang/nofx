@@ -10,11 +10,11 @@ export default function FeaturesSection() {
         <motion.div className='text-center mb-16' initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <motion.div
             className='inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6'
-            style={{ background: 'rgba(240, 185, 11, 0.1)', border: '1px solid rgba(240, 185, 11, 0.2)' }}
+            style={{ background: 'rgba(52, 211, 153, 0.1)', border: '1px solid rgba(52, 211, 153, 0.2)' }}
             whileHover={{ scale: 1.05 }}
           >
-            <Rocket className='w-4 h-4' style={{ color: 'var(--brand-yellow)' }} />
-            <span className='text-sm font-semibold' style={{ color: 'var(--brand-yellow)' }}>
+            <Rocket className='w-4 h-4' style={{ color: 'var(--brand-primary)' }} />
+            <span className='text-sm font-semibold' style={{ color: 'var(--brand-primary)' }}>
               核心功能
             </span>
           </motion.div>
@@ -53,4 +53,3 @@ export default function FeaturesSection() {
     </AnimatedSection>
   )
 }
-

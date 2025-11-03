@@ -3,7 +3,7 @@ export type Language = 'en' | 'zh';
 export const translations = {
   en: {
     // Header
-    appTitle: 'NOFX',
+    appTitle: 'FLUXTRADER',
     subtitle: 'Multi-AI Model Trading Platform',
     aiTraders: 'AI Traders',
     details: 'Details',
@@ -17,7 +17,7 @@ export const translations = {
     view: 'View',
 
     // Footer
-    footerTitle: 'NOFX - AI Trading System',
+    footerTitle: 'FLUXTRADER - AI Trading System',
     footerWarning: '⚠️ Trading involves risk. Use at your own discretion.',
 
     // Stats Cards
@@ -320,7 +320,7 @@ export const translations = {
   },
   zh: {
     // Header
-    appTitle: 'NOFX',
+    appTitle: 'FLUXTRADER',
     subtitle: '多AI模型交易平台',
     aiTraders: 'AI交易员',
     details: '详情',
@@ -334,7 +334,7 @@ export const translations = {
     view: '查看',
 
     // Footer
-    footerTitle: 'NOFX - AI交易系统',
+    footerTitle: 'FLUXTRADER - AI交易系统',
     footerWarning: '⚠️ 交易有风险，请谨慎使用。',
 
     // Stats Cards

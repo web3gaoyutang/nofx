@@ -18,18 +18,18 @@ export default function AboutSection() {
             <motion.div
               className='inline-flex items-center gap-2 px-4 py-2 rounded-full'
               style={{
-                background: 'rgba(240, 185, 11, 0.1)',
-                border: '1px solid rgba(240, 185, 11, 0.2)',
+                background: 'rgba(52, 211, 153, 0.1)',
+                border: '1px solid rgba(52, 211, 153, 0.2)',
               }}
               whileHover={{ scale: 1.05 }}
             >
               <Target
                 className='w-4 h-4'
-                style={{ color: 'var(--brand-yellow)' }}
+                style={{ color: 'var(--brand-primary)' }}
               />
               <span
                 className='text-sm font-semibold'
-                style={{ color: 'var(--brand-yellow)' }}
+                style={{ color: 'var(--brand-primary)' }}
               >
                 关于 NOFX
               </span>
@@ -63,11 +63,11 @@ export default function AboutSection() {
             >
               <div
                 className='w-12 h-12 rounded-full flex items-center justify-center'
-                style={{ background: 'rgba(240, 185, 11, 0.1)' }}
+                style={{ background: 'rgba(52, 211, 153, 0.1)' }}
               >
                 <Shield
                   className='w-6 h-6'
-                  style={{ color: 'var(--brand-yellow)' }}
+                  style={{ color: 'var(--brand-primary)' }}
                 />
               </div>
               <div>
@@ -120,4 +120,3 @@ export default function AboutSection() {
     </AnimatedSection>
   )
 }
-

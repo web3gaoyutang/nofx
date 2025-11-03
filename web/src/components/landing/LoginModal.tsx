@@ -23,7 +23,7 @@ export default function LoginModal({ onClose }: { onClose: () => void }) {
           <X className='w-6 h-6' />
         </motion.button>
         <h2 className='text-2xl font-bold mb-6' style={{ color: 'var(--brand-light-gray)' }}>
-          访问 NOFX 平台
+          访问 FLUXTRADER 平台
         </h2>
         <p className='text-sm mb-6' style={{ color: 'var(--text-secondary)' }}>
           请选择登录或注册以访问完整的 AI 交易平台

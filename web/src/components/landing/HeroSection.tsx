@@ -39,28 +39,28 @@ export default function HeroSection() {
             </h1>
 
             <motion.p className='text-xl leading-relaxed' style={{ color: 'var(--text-secondary)' }} variants={fadeInUp}>
-              NOFX 是 AI 交易的未来标准——一个开放、社区驱动的代理式交易操作系统。支持 Binance、Aster DEX 等交易所，
+              FLUXTRADER 是 AI 交易的未来标准——一个开放、社区驱动的代理式交易操作系统。支持 Binance、Aster DEX 等交易所，
               自托管、多代理竞争，让 AI 为你自动决策、执行和优化交易。
             </motion.p>
 
             <div className='flex items-center gap-3 flex-wrap'>
-              <motion.a href='https://github.com/tinkle-community/nofx' target='_blank' rel='noopener noreferrer' whileHover={{ scale: 1.05 }} transition={{ type: 'spring', stiffness: 400 }}>
+              <motion.a href='https://github.com/tinkle-community/fluxtrader' target='_blank' rel='noopener noreferrer' whileHover={{ scale: 1.05 }} transition={{ type: 'spring', stiffness: 400 }}>
                 <img
-                  src='https://img.shields.io/github/stars/tinkle-community/nofx?style=for-the-badge&logo=github&logoColor=white&color=F0B90B&labelColor=1E2329'
+                  src='https://img.shields.io/github/stars/tinkle-community/fluxtrader?style=for-the-badge&logo=github&logoColor=white&color=F0B90B&labelColor=1E2329'
                   alt='GitHub Stars'
                   className='h-7'
                 />
               </motion.a>
-              <motion.a href='https://github.com/tinkle-community/nofx/network/members' target='_blank' rel='noopener noreferrer' whileHover={{ scale: 1.05 }} transition={{ type: 'spring', stiffness: 400 }}>
+              <motion.a href='https://github.com/tinkle-community/fluxtrader/network/members' target='_blank' rel='noopener noreferrer' whileHover={{ scale: 1.05 }} transition={{ type: 'spring', stiffness: 400 }}>
                 <img
-                  src='https://img.shields.io/github/forks/tinkle-community/nofx?style=for-the-badge&logo=github&logoColor=white&color=F0B90B&labelColor=1E2329'
+                  src='https://img.shields.io/github/forks/tinkle-community/fluxtrader?style=for-the-badge&logo=github&logoColor=white&color=F0B90B&labelColor=1E2329'
                   alt='GitHub Forks'
                   className='h-7'
                 />
               </motion.a>
-              <motion.a href='https://github.com/tinkle-community/nofx/graphs/contributors' target='_blank' rel='noopener noreferrer' whileHover={{ scale: 1.05 }} transition={{ type: 'spring', stiffness: 400 }}>
+              <motion.a href='https://github.com/tinkle-community/fluxtrader/graphs/contributors' target='_blank' rel='noopener noreferrer' whileHover={{ scale: 1.05 }} transition={{ type: 'spring', stiffness: 400 }}>
                 <img
-                  src='https://img.shields.io/github/contributors/tinkle-community/nofx?style=for-the-badge&logo=github&logoColor=white&color=F0B90B&labelColor=1E2329'
+                  src='https://img.shields.io/github/contributors/tinkle-community/fluxtrader?style=for-the-badge&logo=github&logoColor=white&color=F0B90B&labelColor=1E2329'
                   alt='GitHub Contributors'
                   className='h-7'
                 />
@@ -73,7 +73,7 @@ export default function HeroSection() {
           </motion.div>
 
           {/* Right Visual */}
-          <motion.img src='/images/main.png' alt='NOFX Platform' className='w-full opacity-90' whileHover={{ scale: 1.05, rotate: 5 }} transition={{ type: 'spring', stiffness: 300 }} />
+          <motion.img src='/images/main.png' alt='FLUXTRADER Platform' className='w-full opacity-90' whileHover={{ scale: 1.05, rotate: 5 }} transition={{ type: 'spring', stiffness: 300 }} />
         </div>
       </div>
     </section>

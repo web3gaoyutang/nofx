@@ -11,9 +11,9 @@ export default function HeaderBar({ onLoginClick }: { onLoginClick: () => void }
         <div className='flex items-center justify-between h-16'>
           {/* Logo */}
           <div className='flex items-center gap-3'>
-            <img src='/images/logo.png' alt='NOFX Logo' className='w-8 h-8' />
+            <img src='/images/logo.png' alt='FLUXTRADER Logo' className='w-8 h-8' />
             <span className='text-xl font-bold' style={{ color: 'var(--brand-yellow)' }}>
-              NOFX
+              FLUXTRADER
             </span>
             <span className='text-sm hidden sm:block' style={{ color: 'var(--text-secondary)' }}>
               Agentic Trading OS
@@ -27,9 +27,9 @@ export default function HeaderBar({ onLoginClick }: { onLoginClick: () => void }
                 key={item}
                 href={
                   item === 'GitHub'
-                    ? 'https://github.com/tinkle-community/nofx'
+                    ? 'https://github.com/tinkle-community/fluxtrader'
                     : item === '社区'
-                    ? 'https://t.me/nofx_dev_community'
+                    ? 'https://t.me/fluxtrader_dev_community'
                     : `#${item === '功能' ? 'features' : 'how-it-works'}`
                 }
                 target={item === 'GitHub' || item === '社区' ? '_blank' : undefined}
