@@ -4,7 +4,7 @@ export const translations = {
   en: {
     // Header
     appTitle: 'FluxTrader',
-    subtitle: 'Multi-AI Model Trading Platform',
+    subtitle: 'AI Trading Agent for Crypto',
     aiTraders: 'AI Traders',
     details: 'Details',
     tradingPanel: 'Trading Panel',
@@ -77,7 +77,7 @@ export const translations = {
     count: '{count} pts',
 
     // Competition Page
-    aiCompetition: 'AI Competition',
+    aiCompetition: 'AI Data',
     traders: 'traders',
     liveBattle: 'Live Battle',
     realTimeBattle: 'Real-time Battle',
@@ -321,7 +321,7 @@ export const translations = {
   zh: {
     // Header
     appTitle: 'FluxTrader',
-    subtitle: '多AI模型交易平台',
+    subtitle: 'AI Trading Agent for Crypto | 多AI模型交易平台',
     aiTraders: 'AI交易员',
     details: '详情',
     tradingPanel: '交易面板',
@@ -394,7 +394,7 @@ export const translations = {
     count: '{count} 个',
 
     // Competition Page
-    aiCompetition: 'AI竞赛',
+    aiCompetition: 'AI模型交易数据',
     traders: '交易员',
     liveBattle: '实时对战',
     realTimeBattle: '实时对战',
