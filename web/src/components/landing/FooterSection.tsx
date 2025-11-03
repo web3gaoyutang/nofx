@@ -31,7 +31,7 @@ export default function FooterSection() {
             <ul className='space-y-2 text-sm' style={{ color: '#848E9C' }}>
               <li>
                 <a
-                  className='hover:text-[#F0B90B]'
+                  className='hover:text-[#34d399]'
                   href='https://github.com/tinkle-community/fluxtrader'
                   target='_blank'
                   rel='noopener noreferrer'
@@ -41,7 +41,7 @@ export default function FooterSection() {
               </li>
               <li>
                 <a
-                  className='hover:text-[#F0B90B]'
+                  className='hover:text-[#34d399]'
                   href='https://t.me/fluxtrader_dev_community'
                   target='_blank'
                   rel='noopener noreferrer'
@@ -51,7 +51,7 @@ export default function FooterSection() {
               </li>
               <li>
                 <a
-                  className='hover:text-[#F0B90B]'
+                  className='hover:text-[#34d399]'
                   href='https://x.com/fluxtrader_ai'
                   target='_blank'
                   rel='noopener noreferrer'
@@ -72,7 +72,7 @@ export default function FooterSection() {
             <ul className='space-y-2 text-sm' style={{ color: '#848E9C' }}>
               <li>
                 <a
-                  className='hover:text-[#F0B90B]'
+                  className='hover:text-[#34d399]'
                   href='https://github.com/tinkle-community/fluxtrader/blob/main/README.md'
                   target='_blank'
                   rel='noopener noreferrer'
@@ -82,7 +82,7 @@ export default function FooterSection() {
               </li>
               <li>
                 <a
-                  className='hover:text-[#F0B90B]'
+                  className='hover:text-[#34d399]'
                   href='https://github.com/tinkle-community/fluxtrader/issues'
                   target='_blank'
                   rel='noopener noreferrer'
@@ -92,7 +92,7 @@ export default function FooterSection() {
               </li>
               <li>
                 <a
-                  className='hover:text-[#F0B90B]'
+                  className='hover:text-[#34d399]'
                   href='https://github.com/tinkle-community/fluxtrader/pulls'
                   target='_blank'
                   rel='noopener noreferrer'
@@ -113,7 +113,7 @@ export default function FooterSection() {
             <ul className='space-y-2 text-sm' style={{ color: '#848E9C' }}>
               <li>
                 <a
-                  className='hover:text-[#F0B90B]'
+                  className='hover:text-[#34d399]'
                   href='https://asterdex.com/'
                   target='_blank'
                   rel='noopener noreferrer'
@@ -123,7 +123,7 @@ export default function FooterSection() {
               </li>
               <li>
                 <a
-                  className='hover:text-[#F0B90B]'
+                  className='hover:text-[#34d399]'
                   href='https://www.binance.com/'
                   target='_blank'
                   rel='noopener noreferrer'
@@ -133,7 +133,7 @@ export default function FooterSection() {
               </li>
               <li>
                 <a
-                  className='hover:text-[#F0B90B]'
+                  className='hover:text-[#34d399]'
                   href='https://hyperliquid.xyz/'
                   target='_blank'
                   rel='noopener noreferrer'
@@ -143,7 +143,7 @@ export default function FooterSection() {
               </li>
               <li>
                 <a
-                  className='hover:text-[#F0B90B]'
+                  className='hover:text-[#34d399]'
                   href='https://amber.ac/'
                   target='_blank'
                   rel='noopener noreferrer'

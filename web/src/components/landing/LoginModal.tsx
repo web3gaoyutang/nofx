@@ -13,7 +13,7 @@ export default function LoginModal({ onClose }: { onClose: () => void }) {
     >
       <motion.div
         className='relative max-w-md w-full rounded-2xl p-8'
-        style={{ background: 'var(--brand-dark-gray)', border: '1px solid rgba(240, 185, 11, 0.2)' }}
+        style={{ background: 'var(--brand-dark-gray)', border: '1px solid #a7f3d0' }}
         initial={{ scale: 0.9, y: 50 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.9, y: 50 }}
@@ -37,7 +37,7 @@ export default function LoginModal({ onClose }: { onClose: () => void }) {
             }}
             className='block w-full px-6 py-3 rounded-lg font-semibold text-center'
             style={{ background: 'var(--brand-yellow)', color: 'var(--brand-black)' }}
-            whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(240, 185, 11, 0.4)' }}
+            whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(52, 211, 153, 0.4)' }}
             whileTap={{ scale: 0.95 }}
           >
             登录
@@ -49,7 +49,7 @@ export default function LoginModal({ onClose }: { onClose: () => void }) {
               onClose()
             }}
             className='block w-full px-6 py-3 rounded-lg font-semibold text-center'
-            style={{ background: 'var(--brand-dark-gray)', color: 'var(--brand-light-gray)', border: '1px solid rgba(240, 185, 11, 0.2)' }}
+            style={{ background: 'var(--brand-dark-gray)', color: 'var(--brand-light-gray)', border: '1px solid #a7f3d0' }}
             whileHover={{ scale: 1.05, borderColor: 'var(--brand-yellow)' }}
             whileTap={{ scale: 0.95 }}
           >

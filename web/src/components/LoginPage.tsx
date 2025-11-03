@@ -62,7 +62,7 @@ export function LoginPage() {
               window.history.pushState({}, '', '/');
               window.dispatchEvent(new PopStateEvent('popstate'));
             }}
-            className="flex items-center gap-2 mb-6 text-sm hover:text-[#F0B90B] transition-colors"
+            className="flex items-center gap-2 mb-6 text-sm hover:text-[#34d399] transition-colors"
             style={{ color: '#848E9C' }}
           >
             <ArrowLeft className="w-4 h-4" />
@@ -126,7 +126,7 @@ export function LoginPage() {
                 type="submit"
                 disabled={loading}
                 className="w-full px-4 py-2 rounded text-sm font-semibold transition-all hover:scale-105 disabled:opacity-50"
-                style={{ background: '#F0B90B', color: '#000' }}
+                style={{ background: '#34d399', color: '#000' }}
               >
                 {loading ? t('loading', language) : t('loginButton', language)}
               </button>
@@ -176,7 +176,7 @@ export function LoginPage() {
                   type="submit"
                   disabled={loading || otpCode.length !== 6}
                   className="flex-1 px-4 py-2 rounded text-sm font-semibold transition-all hover:scale-105 disabled:opacity-50"
-                  style={{ background: '#F0B90B', color: '#000' }}
+                  style={{ background: '#34d399', color: '#000' }}
                 >
                   {loading ? t('loading', language) : t('verifyOTP', language)}
                 </button>
@@ -195,7 +195,7 @@ export function LoginPage() {
                 window.dispatchEvent(new PopStateEvent('popstate'));
               }}
               className="font-semibold hover:underline"
-              style={{ color: '#F0B90B' }}
+              style={{ color: '#34d399' }}
             >
               {t('registerNow', language)}
             </button>

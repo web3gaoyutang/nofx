@@ -10,16 +10,16 @@ export default function FeaturesSection() {
         <motion.div className='text-center mb-16' initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <motion.div
             className='inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6'
-            style={{ background: 'rgba(52, 211, 153, 0.1)', border: '1px solid rgba(52, 211, 153, 0.2)' }}
+            style={{ background: 'rgba(52, 211, 153, 0.1)', border: '1px solid #a7f3d0' }}
             whileHover={{ scale: 1.05 }}
           >
-            <Rocket className='w-4 h-4' style={{ color: 'var(--brand-primary)' }} />
-            <span className='text-sm font-semibold' style={{ color: 'var(--brand-primary)' }}>
+            <Rocket className='w-4 h-4' style={{ color: 'var(--brand-yellow)' }} />
+            <span className='text-sm font-semibold' style={{ color: 'var(--brand-yellow)' }}>
               核心功能
             </span>
           </motion.div>
           <h2 className='text-4xl font-bold mb-4' style={{ color: 'var(--brand-light-gray)' }}>
-            为什么选择 NOFX？
+            为什么选择 FLUXTRADER？
           </h2>
           <p className='text-lg' style={{ color: 'var(--text-secondary)' }}>
             开源、透明、社区驱动的 AI 交易操作系统
@@ -53,3 +53,4 @@ export default function FeaturesSection() {
     </AnimatedSection>
   )
 }
+

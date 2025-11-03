@@ -462,8 +462,8 @@ export function AITradersPage({ onTraderSelect }: AITradersPageProps) {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{
-            background: 'linear-gradient(135deg, #F0B90B 0%, #FCD535 100%)',
-            boxShadow: '0 4px 14px rgba(240, 185, 11, 0.4)'
+            background: 'linear-gradient(135deg, #34d399 0%, #68dcb9 100%)',
+            boxShadow: '0 4px 14px rgba(52, 211, 153, 0.4)'
           }}>
             <Bot className="w-6 h-6" style={{ color: '#000' }} />
           </div>
@@ -471,8 +471,8 @@ export function AITradersPage({ onTraderSelect }: AITradersPageProps) {
             <h1 className="text-2xl font-bold flex items-center gap-2" style={{ color: '#EAECEF' }}>
               {t('aiTraders', language)}
               <span className="text-xs font-normal px-2 py-1 rounded" style={{ 
-                background: 'rgba(240, 185, 11, 0.15)', 
-                color: '#F0B90B' 
+                background: 'rgba(52, 211, 153, 0.15)', 
+                color: '#34d399' 
               }}>
                 {traders?.length || 0} {t('active', language)}
               </span>
@@ -527,7 +527,7 @@ export function AITradersPage({ onTraderSelect }: AITradersPageProps) {
             disabled={configuredModels.length === 0 || configuredExchanges.length === 0}
             className="px-4 py-2 rounded text-sm font-semibold transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
             style={{
-              background: (configuredModels.length > 0 && configuredExchanges.length > 0) ? '#F0B90B' : '#2B3139',
+              background: (configuredModels.length > 0 && configuredExchanges.length > 0) ? '#34d399' : '#2B3139',
               color: (configuredModels.length > 0 && configuredExchanges.length > 0) ? '#000' : '#848E9C'
             }}
           >
@@ -592,7 +592,7 @@ export function AITradersPage({ onTraderSelect }: AITradersPageProps) {
         {/* Exchanges */}
         <div className="binance-card p-4">
           <h3 className="text-lg font-semibold mb-3 flex items-center gap-2" style={{ color: '#EAECEF' }}>
-            <Landmark className="w-5 h-5" style={{ color: '#F0B90B' }} />
+            <Landmark className="w-5 h-5" style={{ color: '#34d399' }} />
             {t('exchanges', language)}
           </h3>
           <div className="space-y-3">
@@ -636,7 +636,7 @@ export function AITradersPage({ onTraderSelect }: AITradersPageProps) {
       <div className="binance-card p-6">
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-xl font-bold flex items-center gap-2" style={{ color: '#EAECEF' }}>
-            <Users className="w-6 h-6" style={{ color: '#F0B90B' }} />
+            <Users className="w-6 h-6" style={{ color: '#34d399' }} />
             {t('currentTraders', language)}
           </h2>
         </div>
@@ -883,8 +883,8 @@ function SignalSourceModal({
             </div>
           </div>
 
-          <div className="p-4 rounded" style={{ background: 'rgba(240, 185, 11, 0.1)', border: '1px solid rgba(240, 185, 11, 0.2)' }}>
-            <div className="text-sm font-semibold mb-2" style={{ color: '#F0B90B' }}>
+          <div className="p-4 rounded" style={{ background: 'rgba(52, 211, 153, 0.1)', border: '1px solid #a7f3d0' }}>
+            <div className="text-sm font-semibold mb-2" style={{ color: '#34d399' }}>
               ℹ️ {t('information', language)}
             </div>
             <div className="text-xs space-y-1" style={{ color: '#848E9C' }}>
@@ -906,7 +906,7 @@ function SignalSourceModal({
             <button
               type="submit"
               className="flex-1 px-4 py-2 rounded text-sm font-semibold"
-              style={{ background: '#F0B90B', color: '#000' }}
+              style={{ background: '#34d399', color: '#000' }}
             >
               {t('save', language)}
             </button>
@@ -1086,8 +1086,8 @@ function ModelConfigModal({
                 </div>
               </div>
 
-              <div className="p-4 rounded" style={{ background: 'rgba(240, 185, 11, 0.1)', border: '1px solid rgba(240, 185, 11, 0.2)' }}>
-                <div className="text-sm font-semibold mb-2" style={{ color: '#F0B90B' }}>
+              <div className="p-4 rounded" style={{ background: 'rgba(52, 211, 153, 0.1)', border: '1px solid #a7f3d0' }}>
+                <div className="text-sm font-semibold mb-2" style={{ color: '#34d399' }}>
                   ℹ️ {t('information', language)}
                 </div>
                 <div className="text-xs space-y-1" style={{ color: '#848E9C' }}>
@@ -1112,7 +1112,7 @@ function ModelConfigModal({
               type="submit"
               disabled={!selectedModel || !apiKey.trim()}
               className="flex-1 px-4 py-2 rounded text-sm font-semibold disabled:opacity-50"
-              style={{ background: '#F0B90B', color: '#000' }}
+              style={{ background: '#34d399', color: '#000' }}
             >
               {t('saveConfig', language)}
             </button>
@@ -1416,7 +1416,7 @@ function ExchangeConfigModal({
                     checked={testnet}
                     onChange={(e) => setTestnet(e.target.checked)}
                     className="form-checkbox rounded"
-                    style={{ accentColor: '#F0B90B' }}
+                    style={{ accentColor: '#34d399' }}
                   />
                   <span style={{ color: '#EAECEF' }}>{t('useTestnet', language)}</span>
                 </label>
@@ -1425,8 +1425,8 @@ function ExchangeConfigModal({
                 </div>
               </div>
 
-              <div className="p-4 rounded" style={{ background: 'rgba(240, 185, 11, 0.1)', border: '1px solid rgba(240, 185, 11, 0.2)' }}>
-                <div className="text-sm font-semibold mb-2" style={{ color: '#F0B90B' }}>
+              <div className="p-4 rounded" style={{ background: 'rgba(52, 211, 153, 0.1)', border: '1px solid #a7f3d0' }}>
+                <div className="text-sm font-semibold mb-2" style={{ color: '#34d399' }}>
                   <span className="inline-flex items-center gap-1"><AlertTriangle className="w-4 h-4" /> {t('securityWarning', language)}</span>
                 </div>
                 <div className="text-xs space-y-1" style={{ color: '#848E9C' }}>
@@ -1458,7 +1458,7 @@ function ExchangeConfigModal({
                 (selectedExchange.type === 'cex' && selectedExchange.id !== 'hyperliquid' && selectedExchange.id !== 'aster' && selectedExchange.id !== 'binance' && selectedExchange.id !== 'okx' && (!apiKey.trim() || !secretKey.trim()))
               }
               className="flex-1 px-4 py-2 rounded text-sm font-semibold disabled:opacity-50"
-              style={{ background: '#F0B90B', color: '#000' }}
+              style={{ background: '#34d399', color: '#000' }}
             >
               {t('saveConfig', language)}
             </button>

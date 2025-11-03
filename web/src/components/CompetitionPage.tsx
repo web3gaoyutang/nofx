@@ -75,13 +75,13 @@ export function CompetitionPage() {
       {/* Competition Header - 精简版 */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: 'rgba(240, 185, 11, 0.15)', border: '1px solid rgba(240,185,11,0.3)' }}>
-            <Trophy className="w-6 h-6" style={{ color: '#F0B90B' }} />
+          <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: 'rgba(52, 211, 153, 0.15)', border: '1px solid rgba(240,185,11,0.3)' }}>
+            <Trophy className="w-6 h-6" style={{ color: '#34d399' }} />
           </div>
           <div>
             <h1 className="text-2xl font-bold flex items-center gap-2" style={{ color: '#EAECEF' }}>
               {t('aiCompetition', language)}
-              <span className="text-xs font-normal px-2 py-1 rounded" style={{ background: 'rgba(240, 185, 11, 0.15)', color: '#F0B90B' }}>
+              <span className="text-xs font-normal px-2 py-1 rounded" style={{ background: 'rgba(52, 211, 153, 0.15)', color: '#34d399' }}>
                 {competition.count} {t('traders', language)}
               </span>
             </h1>
@@ -92,7 +92,7 @@ export function CompetitionPage() {
         </div>
         <div className="text-right">
           <div className="text-xs mb-1" style={{ color: '#848E9C' }}>{t('leader', language)}</div>
-          <div className="text-lg font-bold" style={{ color: '#F0B90B' }}>{leader?.trader_name}</div>
+          <div className="text-lg font-bold" style={{ color: '#34d399' }}>{leader?.trader_name}</div>
           <div className="text-sm font-semibold" style={{ color: (leader?.total_pnl ?? 0) >= 0 ? '#0ECB81' : '#F6465D' }}>
             {(leader?.total_pnl ?? 0) >= 0 ? '+' : ''}{leader?.total_pnl_pct?.toFixed(2) || '0.00'}%
           </div>
@@ -120,7 +120,7 @@ export function CompetitionPage() {
             <h2 className="text-lg font-bold flex items-center gap-2" style={{ color: '#EAECEF' }}>
               {t('leaderboard', language)}
             </h2>
-            <div className="text-xs px-2 py-1 rounded" style={{ background: 'rgba(240, 185, 11, 0.1)', color: '#F0B90B', border: '1px solid rgba(240, 185, 11, 0.2)' }}>
+            <div className="text-xs px-2 py-1 rounded" style={{ background: 'rgba(52, 211, 153, 0.1)', color: '#34d399', border: '1px solid #a7f3d0' }}>
               {t('live', language)}
             </div>
           </div>
@@ -135,16 +135,16 @@ export function CompetitionPage() {
                   onClick={() => handleTraderClick(trader.trader_id)}
                   className="rounded p-3 transition-all duration-300 hover:translate-y-[-1px] cursor-pointer hover:shadow-lg"
                   style={{
-                    background: isLeader ? 'linear-gradient(135deg, rgba(240, 185, 11, 0.08) 0%, #0B0E11 100%)' : '#0B0E11',
-                    border: `1px solid ${isLeader ? 'rgba(240, 185, 11, 0.4)' : '#2B3139'}`,
-                    boxShadow: isLeader ? '0 3px 15px rgba(240, 185, 11, 0.12), 0 0 0 1px rgba(240, 185, 11, 0.15)' : '0 1px 4px rgba(0, 0, 0, 0.3)'
+                    background: isLeader ? 'linear-gradient(135deg, rgba(52, 211, 153, 0.08) 0%, #0B0E11 100%)' : '#0B0E11',
+                    border: `1px solid ${isLeader ? 'rgba(52, 211, 153, 0.4)' : '#2B3139'}`,
+                    boxShadow: isLeader ? '0 3px 15px rgba(52, 211, 153, 0.12), 0 0 0 1px rgba(52, 211, 153, 0.15)' : '0 1px 4px rgba(0, 0, 0, 0.3)'
                   }}
                 >
                   <div className="flex items-center justify-between">
                     {/* Rank & Name */}
                     <div className="flex items-center gap-3">
                       <div className="w-6 flex items-center justify-center">
-                        <Medal className="w-5 h-5" style={{ color: index === 0 ? '#F0B90B' : index === 1 ? '#C0C0C0' : '#CD7F32' }} />
+                        <Medal className="w-5 h-5" style={{ color: index === 0 ? '#34d399' : index === 1 ? '#C0C0C0' : '#CD7F32' }} />
                       </div>
                       <div>
                         <div className="font-bold text-sm" style={{ color: '#EAECEF' }}>{trader.trader_name}</div>

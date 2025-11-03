@@ -35,7 +35,7 @@ export function Header({ simple = false }: HeaderProps) {
               onClick={() => setLanguage('zh')}
               className="px-3 py-1.5 rounded text-xs font-semibold transition-all"
               style={language === 'zh'
-                ? { background: '#F0B90B', color: '#000' }
+                ? { background: '#34d399', color: '#000' }
                 : { background: 'transparent', color: '#848E9C' }
               }
             >
@@ -45,7 +45,7 @@ export function Header({ simple = false }: HeaderProps) {
               onClick={() => setLanguage('en')}
               className="px-3 py-1.5 rounded text-xs font-semibold transition-all"
               style={language === 'en'
-                ? { background: '#F0B90B', color: '#000' }
+                ? { background: '#34d399', color: '#000' }
                 : { background: 'transparent', color: '#848E9C' }
               }
             >

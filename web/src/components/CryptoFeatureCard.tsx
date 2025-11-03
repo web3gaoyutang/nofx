@@ -31,7 +31,7 @@ export const CryptoFeatureCard = React.forwardRef<HTMLDivElement, CryptoFeatureC
           className={cn(
             "relative h-full overflow-hidden border-2 transition-all duration-300 rounded-xl",
             "bg-gradient-to-br from-[#0C0E12] to-[#1E2329]",
-            "border-[#2B3139] hover:border-[#F0B90B]/50",
+            "border-[#2B3139] hover:border-[#34d399]/50",
             isHovered && "shadow-[0_0_20px_rgba(240,185,11,0.2)]",
             className
           )}
@@ -44,7 +44,7 @@ export const CryptoFeatureCard = React.forwardRef<HTMLDivElement, CryptoFeatureC
             }}
             transition={{ duration: 0.3 }}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#F0B90B]/20 to-transparent animate-[shimmer_2s_infinite]" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#34d399]/20 to-transparent animate-[shimmer_2s_infinite]" />
           </motion.div>
 
           {/* Background pattern */}
@@ -52,7 +52,7 @@ export const CryptoFeatureCard = React.forwardRef<HTMLDivElement, CryptoFeatureC
             <div
               className="absolute inset-0"
               style={{
-                backgroundImage: `radial-gradient(circle at 2px 2px, #F0B90B 1px, transparent 0)`,
+                backgroundImage: `radial-gradient(circle at 2px 2px, #34d399 1px, transparent 0)`,
                 backgroundSize: "32px 32px",
               }}
             />
@@ -63,18 +63,18 @@ export const CryptoFeatureCard = React.forwardRef<HTMLDivElement, CryptoFeatureC
             <motion.div
               className={cn(
                 "mb-6 inline-flex items-center justify-center w-16 h-16 rounded-xl",
-                "bg-gradient-to-br from-[#F0B90B]/20 to-[#F0B90B]/5",
-                "border border-[#F0B90B]/30"
+                "bg-gradient-to-br from-[#34d399]/20 to-[#34d399]/5",
+                "border border-[#34d399]/30"
               )}
               animate={{
                 scale: isHovered ? 1.1 : 1,
                 boxShadow: isHovered
-                  ? "0 0 20px rgba(240, 185, 11, 0.4)"
-                  : "0 0 0px rgba(240, 185, 11, 0)",
+                  ? "0 0 20px rgba(52, 211, 153, 0.4)"
+                  : "0 0 0px rgba(52, 211, 153, 0)",
               }}
               transition={{ duration: 0.3 }}
             >
-              <div className="text-[#F0B90B]">{icon}</div>
+              <div className="text-[#34d399]">{icon}</div>
             </motion.div>
 
             {/* Title */}
@@ -95,8 +95,8 @@ export const CryptoFeatureCard = React.forwardRef<HTMLDivElement, CryptoFeatureC
                   className="flex items-start gap-3"
                 >
                   <div className="mt-0.5 flex-shrink-0">
-                    <div className="w-5 h-5 rounded-full bg-[#F0B90B]/20 flex items-center justify-center">
-                      <Check className="w-3 h-3 text-[#F0B90B]" />
+                    <div className="w-5 h-5 rounded-full bg-[#34d399]/20 flex items-center justify-center">
+                      <Check className="w-3 h-3 text-[#34d399]" />
                     </div>
                   </div>
                   <span className="text-sm text-[#EAECEF]">{feature}</span>

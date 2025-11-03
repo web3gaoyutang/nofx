@@ -81,7 +81,7 @@ export function RegisterPage() {
               window.history.pushState({}, '', '/');
               window.dispatchEvent(new PopStateEvent('popstate'));
             }}
-            className="flex items-center gap-2 mb-6 text-sm hover:text-[#F0B90B] transition-colors"
+            className="flex items-center gap-2 mb-6 text-sm hover:text-[#34d399] transition-colors"
             style={{ color: '#848E9C' }}
           >
             <ArrowLeft className="w-4 h-4" />
@@ -163,7 +163,7 @@ export function RegisterPage() {
                 type="submit"
                 disabled={loading}
                 className="w-full px-4 py-2 rounded text-sm font-semibold transition-all hover:scale-105 disabled:opacity-50"
-                style={{ background: '#F0B90B', color: '#000' }}
+                style={{ background: '#34d399', color: '#000' }}
               >
                 {loading ? t('loading', language) : t('registerButton', language)}
               </button>
@@ -220,7 +220,7 @@ export function RegisterPage() {
                       <button
                         onClick={() => copyToClipboard(otpSecret)}
                         className="px-2 py-1 text-xs rounded"
-                        style={{ background: '#F0B90B', color: '#000' }}
+                        style={{ background: '#34d399', color: '#000' }}
                       >
                         {t('copy', language)}
                       </button>
@@ -241,7 +241,7 @@ export function RegisterPage() {
               <button
                 onClick={handleSetupComplete}
                 className="w-full px-4 py-2 rounded text-sm font-semibold transition-all hover:scale-105"
-                style={{ background: '#F0B90B', color: '#000' }}
+                style={{ background: '#34d399', color: '#000' }}
               >
                 {t('setupCompleteContinue', language)}
               </button>
@@ -293,7 +293,7 @@ export function RegisterPage() {
                   type="submit"
                   disabled={loading || otpCode.length !== 6}
                   className="flex-1 px-4 py-2 rounded text-sm font-semibold transition-all hover:scale-105 disabled:opacity-50"
-                  style={{ background: '#F0B90B', color: '#000' }}
+                  style={{ background: '#34d399', color: '#000' }}
                 >
                   {loading ? t('loading', language) : t('completeRegistration', language)}
                 </button>
@@ -313,7 +313,7 @@ export function RegisterPage() {
                   window.dispatchEvent(new PopStateEvent('popstate'));
                 }}
                 className="font-semibold hover:underline"
-                style={{ color: '#F0B90B' }}
+                style={{ color: '#34d399' }}
               >
                 立即登录
               </button>

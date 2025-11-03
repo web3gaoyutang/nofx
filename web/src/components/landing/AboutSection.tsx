@@ -19,19 +19,19 @@ export default function AboutSection() {
               className='inline-flex items-center gap-2 px-4 py-2 rounded-full'
               style={{
                 background: 'rgba(52, 211, 153, 0.1)',
-                border: '1px solid rgba(52, 211, 153, 0.2)',
+                border: '1px solid #a7f3d0',
               }}
               whileHover={{ scale: 1.05 }}
             >
               <Target
                 className='w-4 h-4'
-                style={{ color: 'var(--brand-primary)' }}
+                style={{ color: 'var(--brand-yellow)' }}
               />
               <span
                 className='text-sm font-semibold'
-                style={{ color: 'var(--brand-primary)' }}
+                style={{ color: 'var(--brand-yellow)' }}
               >
-                关于 NOFX
+                关于 FLUXTRADER
               </span>
             </motion.div>
 
@@ -39,13 +39,13 @@ export default function AboutSection() {
               className='text-4xl font-bold'
               style={{ color: 'var(--brand-light-gray)' }}
             >
-              什么是 NOFX？
+              什么是 FLUXTRADER？
             </h2>
             <p
               className='text-lg leading-relaxed'
               style={{ color: 'var(--text-secondary)' }}
             >
-              NOFX 不是另一个交易机器人，而是 AI 交易的 'Linux' ——
+              FLUXTRADER 不是另一个交易机器人，而是 AI 交易的 'Linux' ——
               一个透明、可信任的开源 OS，提供统一的 '决策-风险-执行'
               层，支持所有资产类别。
             </p>
@@ -67,7 +67,7 @@ export default function AboutSection() {
               >
                 <Shield
                   className='w-6 h-6'
-                  style={{ color: 'var(--brand-primary)' }}
+                  style={{ color: 'var(--brand-yellow)' }}
                 />
               </div>
               <div>
@@ -97,8 +97,8 @@ export default function AboutSection() {
             >
               <Typewriter
                 lines={[
-                  '$ git clone https://github.com/tinkle-community/nofx.git',
-                  '$ cd nofx',
+                  '$ git clone https://github.com/tinkle-community/fluxtrader.git',
+                  '$ cd fluxtrader',
                   '$ chmod +x start.sh',
                   '$ ./start.sh start --build',
                   ' 启动自动交易系统...',
@@ -120,3 +120,4 @@ export default function AboutSection() {
     </AnimatedSection>
   )
 }
+

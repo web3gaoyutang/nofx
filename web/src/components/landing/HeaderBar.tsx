@@ -13,7 +13,7 @@ export default function HeaderBar({ onLoginClick }: { onLoginClick: () => void }
           <div className='flex items-center gap-3'>
             <img src='/images/logo.png' alt='FLUXTRADER Logo' className='w-8 h-8' />
             <span className='text-xl font-bold' style={{ color: 'var(--brand-yellow)' }}>
-              FLUXTRADER
+              FluxTrader
             </span>
             <span className='text-sm hidden sm:block' style={{ color: 'var(--text-secondary)' }}>
               Agentic Trading OS
@@ -71,7 +71,7 @@ export default function HeaderBar({ onLoginClick }: { onLoginClick: () => void }
         animate={mobileMenuOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
         transition={{ duration: 0.3 }}
         className='md:hidden overflow-hidden'
-        style={{ background: 'var(--brand-dark-gray)', borderTop: '1px solid rgba(240, 185, 11, 0.1)' }}
+        style={{ background: 'var(--brand-dark-gray)', borderTop: '1px solid rgba(52, 211, 153, 0.1)' }}
       >
         <div className='px-4 py-4 space-y-3'>
           {['功能', '如何运作', 'GitHub', '社区'].map((item) => (

@@ -217,7 +217,7 @@ function App() {
                 onClick={() => setCurrentPage('competition')}
                 className={`px-3 py-2 rounded text-sm font-semibold transition-all`}
                 style={currentPage === 'competition'
-                  ? { background: '#F0B90B', color: '#000' }
+                  ? { background: '#34d399', color: '#000' }
                   : { background: 'transparent', color: '#848E9C' }
                 }
               >
@@ -227,7 +227,7 @@ function App() {
                 onClick={() => setCurrentPage('traders')}
                 className={`px-3 py-2 rounded text-sm font-semibold transition-all`}
                 style={currentPage === 'traders'
-                  ? { background: '#F0B90B', color: '#000' }
+                  ? { background: '#34d399', color: '#000' }
                   : { background: 'transparent', color: '#848E9C' }
                 }
               >
@@ -237,7 +237,7 @@ function App() {
                 onClick={() => setCurrentPage('trader')}
                 className={`px-3 py-2 rounded text-sm font-semibold transition-all`}
                 style={currentPage === 'trader'
-                  ? { background: '#F0B90B', color: '#000' }
+                  ? { background: '#34d399', color: '#000' }
                   : { background: 'transparent', color: '#848E9C' }
                 }
               >
@@ -251,7 +251,7 @@ function App() {
               {/* User Info - Only show if not in admin mode */}
               {!systemConfig?.admin_mode && user && (
                 <div className="flex items-center gap-2 px-3 py-2 rounded" style={{ background: '#1E2329', border: '1px solid #2B3139' }}>
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold" style={{ background: '#F0B90B', color: '#000' }}>
+                  <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold" style={{ background: '#34d399', color: '#000' }}>
                     {user.email[0].toUpperCase()}
                   </div>
                   <span className="text-sm" style={{ color: '#EAECEF' }}>{user.email}</span>
@@ -261,8 +261,8 @@ function App() {
               {/* Admin Mode Indicator */}
               {systemConfig?.admin_mode && (
                 <div className="flex items-center gap-2 px-3 py-2 rounded" style={{ background: '#1E2329', border: '1px solid #2B3139' }}>
-                  <Zap className="w-4 h-4" style={{ color: '#F0B90B' }} />
-                  <span className="text-sm font-semibold" style={{ color: '#F0B90B' }}>{t('adminMode', language)}</span>
+                  <Zap className="w-4 h-4" style={{ color: '#34d399' }} />
+                  <span className="text-sm font-semibold" style={{ color: '#34d399' }}>{t('adminMode', language)}</span>
                 </div>
               )}
 
@@ -272,7 +272,7 @@ function App() {
                   onClick={() => setLanguage('zh')}
                   className="px-3 py-1.5 rounded text-xs font-semibold transition-all"
                   style={language === 'zh'
-                    ? { background: '#F0B90B', color: '#000' }
+                    ? { background: '#34d399', color: '#000' }
                     : { background: 'transparent', color: '#848E9C' }
                   }
                 >
@@ -282,7 +282,7 @@ function App() {
                   onClick={() => setLanguage('en')}
                   className="px-3 py-1.5 rounded text-xs font-semibold transition-all"
                   style={language === 'en'
-                    ? { background: '#F0B90B', color: '#000' }
+                    ? { background: '#34d399', color: '#000' }
                     : { background: 'transparent', color: '#848E9C' }
                   }
                 >
@@ -348,7 +348,7 @@ function App() {
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = '#2B3139';
                 e.currentTarget.style.color = '#EAECEF';
-                e.currentTarget.style.borderColor = '#F0B90B';
+                e.currentTarget.style.borderColor = '#34d399';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = '#1E2329';
@@ -424,10 +424,10 @@ function TraderDetailsPage({
   return (
     <div>
       {/* Trader Header */}
-      <div className="mb-6 rounded p-6 animate-scale-in" style={{ background: 'linear-gradient(135deg, rgba(240, 185, 11, 0.15) 0%, rgba(252, 213, 53, 0.05) 100%)', border: '1px solid rgba(240, 185, 11, 0.2)', boxShadow: '0 0 30px rgba(240, 185, 11, 0.15)' }}>
+      <div className="mb-6 rounded p-6 animate-scale-in" style={{ background: 'linear-gradient(135deg, rgba(52, 211, 153, 0.15) 0%, rgba(252, 213, 53, 0.05) 100%)', border: '1px solid #a7f3d0', boxShadow: '0 0 30px rgba(52, 211, 153, 0.15)' }}>
         <div className="flex items-start justify-between mb-3">
           <h2 className="text-2xl font-bold flex items-center gap-2" style={{ color: '#EAECEF' }}>
-            <span className="w-10 h-10 rounded-full flex items-center justify-center text-xl" style={{ background: 'linear-gradient(135deg, #F0B90B 0%, #FCD535 100%)' }}>
+            <span className="w-10 h-10 rounded-full flex items-center justify-center text-xl" style={{ background: 'linear-gradient(135deg, #34d399 0%, #68dcb9 100%)' }}>
               🤖
             </span>
             {selectedTrader.trader_name}
@@ -518,7 +518,7 @@ function TraderDetailsPage({
             📈 {t('currentPositions', language)}
           </h2>
           {positions && positions.length > 0 && (
-            <div className="text-xs px-3 py-1 rounded" style={{ background: 'rgba(240, 185, 11, 0.1)', color: '#F0B90B', border: '1px solid rgba(240, 185, 11, 0.2)' }}>
+            <div className="text-xs px-3 py-1 rounded" style={{ background: 'rgba(52, 211, 153, 0.1)', color: '#34d399', border: '1px solid #a7f3d0' }}>
               {positions.length} {t('active', language)}
             </div>
           )}
@@ -560,7 +560,7 @@ function TraderDetailsPage({
                     <td className="py-3 font-mono font-bold" style={{ color: '#EAECEF' }}>
                       {(pos.quantity * pos.mark_price).toFixed(2)} USDT
                     </td>
-                    <td className="py-3 font-mono" style={{ color: '#F0B90B' }}>{pos.leverage}x</td>
+                    <td className="py-3 font-mono" style={{ color: '#34d399' }}>{pos.leverage}x</td>
                     <td className="py-3 font-mono">
                       <span
                         style={{ color: pos.unrealized_pnl >= 0 ? '#0ECB81' : '#F6465D', fontWeight: 'bold' }}
@@ -719,7 +719,7 @@ function DecisionCard({ decision, language }: { decision: DecisionRecord; langua
           <button
             onClick={() => setShowCoT(!showCoT)}
             className="flex items-center gap-2 text-sm transition-colors"
-            style={{ color: '#F0B90B' }}
+            style={{ color: '#34d399' }}
           >
             <span className="font-semibold">📤 {t('aiThinking', language)}</span>
             <span className="text-xs">{showCoT ? t('collapse', language) : t('expand', language)}</span>
@@ -742,12 +742,12 @@ function DecisionCard({ decision, language }: { decision: DecisionRecord; langua
                 className="px-2 py-0.5 rounded text-xs font-bold"
                 style={action.action.includes('open')
                   ? { background: 'rgba(96, 165, 250, 0.1)', color: '#60a5fa' }
-                  : { background: 'rgba(240, 185, 11, 0.1)', color: '#F0B90B' }
+                  : { background: 'rgba(52, 211, 153, 0.1)', color: '#34d399' }
                 }
               >
                 {action.action}
               </span>
-              {action.leverage > 0 && <span style={{ color: '#F0B90B' }}>{action.leverage}x</span>}
+              {action.leverage > 0 && <span style={{ color: '#34d399' }}>{action.leverage}x</span>}
               {action.price > 0 && (
                 <span className="font-mono text-xs" style={{ color: '#848E9C' }}>@{action.price.toFixed(4)}</span>
               )}

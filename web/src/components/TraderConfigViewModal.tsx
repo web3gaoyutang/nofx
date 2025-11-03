@@ -38,9 +38,9 @@ export function TraderConfigViewModal({
       onClick={() => copyToClipboard(text, fieldName)}
       className="ml-2 px-2 py-1 text-xs rounded transition-all duration-200 hover:scale-105"
       style={{
-        background: copiedField === fieldName ? 'rgba(14, 203, 129, 0.1)' : 'rgba(240, 185, 11, 0.1)',
-        color: copiedField === fieldName ? '#0ECB81' : '#F0B90B',
-        border: `1px solid ${copiedField === fieldName ? 'rgba(14, 203, 129, 0.3)' : 'rgba(240, 185, 11, 0.3)'}`
+        background: copiedField === fieldName ? 'rgba(14, 203, 129, 0.1)' : 'rgba(52, 211, 153, 0.1)',
+        color: copiedField === fieldName ? '#0ECB81' : '#34d399',
+        border: `1px solid ${copiedField === fieldName ? 'rgba(14, 203, 129, 0.3)' : 'rgba(52, 211, 153, 0.3)'}`
       }}
     >
       {copiedField === fieldName ? '✓ 已复制' : '📋 复制'}
@@ -75,7 +75,7 @@ export function TraderConfigViewModal({
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-[#2B3139] bg-gradient-to-r from-[#1E2329] to-[#252B35]">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#F0B90B] to-[#E1A706] flex items-center justify-center">
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#34d399] to-[#E1A706] flex items-center justify-center">
               <span className="text-lg">👁️</span>
             </div>
             <div>
@@ -200,7 +200,7 @@ export function TraderConfigViewModal({
           </button>
           <button
             onClick={() => copyToClipboard(JSON.stringify(traderData, null, 2), 'full_config')}
-            className="px-6 py-3 bg-gradient-to-r from-[#F0B90B] to-[#E1A706] text-black rounded-lg hover:from-[#E1A706] hover:to-[#D4951E] transition-all duration-200 font-medium shadow-lg"
+            className="px-6 py-3 bg-gradient-to-r from-[#34d399] to-[#E1A706] text-black rounded-lg hover:from-[#E1A706] hover:to-[#D4951E] transition-all duration-200 font-medium shadow-lg"
           >
             {copiedField === 'full_config' ? '✓ 已复制配置' : '📋 复制完整配置'}
           </button>
