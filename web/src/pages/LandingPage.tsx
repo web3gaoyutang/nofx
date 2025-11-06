@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import HeaderBar from '../components/landing/HeaderBar'
@@ -8,10 +8,31 @@ import FeaturesSection from '../components/landing/FeaturesSection'
 import HowItWorksSection from '../components/landing/HowItWorksSection'
 import AnimatedSection from '../components/landing/AnimatedSection'
 import LoginModal from '../components/landing/LoginModal'
+import TermsModal from '../components/landing/TermsModal'
 import FooterSection from '../components/landing/FooterSection'
 
 export function LandingPage() {
   const [showLoginModal, setShowLoginModal] = useState(false)
+  const [showTermsModal, setShowTermsModal] = useState(false)
+
+  useEffect(() => {
+    // 检查用户是否已经同意过用户协议
+    const hasAgreedToTerms = localStorage.getItem('agreedToTerms')
+    if (!hasAgreedToTerms) {
+      setShowTermsModal(true)
+    }
+  }, [])
+
+  const handleAcceptTerms = () => {
+    localStorage.setItem('agreedToTerms', 'true')
+    setShowTermsModal(false)
+  }
+
+  const handleDeclineTerms = () => {
+    // 用户拒绝协议，可以导航到其他页面或显示提示
+    window.location.href = 'about:blank'
+  }
+
   return (
     <div className='min-h-screen overflow-hidden' style={{ background: 'var(--brand-black)', color: 'var(--brand-light-gray)' }}>
       <HeaderBar onLoginClick={() => setShowLoginModal(true)} />
@@ -41,6 +62,7 @@ export function LandingPage() {
       </AnimatedSection>
 
       {showLoginModal && <LoginModal onClose={() => setShowLoginModal(false)} />}
+      {showTermsModal && <TermsModal onAccept={handleAcceptTerms} onDecline={handleDeclineTerms} />}
       <FooterSection />
     </div>
   )
