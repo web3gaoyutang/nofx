@@ -15,37 +15,37 @@ export default function FeaturesSection() {
           >
             <Rocket className='w-4 h-4' style={{ color: 'var(--brand-yellow)' }} />
             <span className='text-sm font-semibold' style={{ color: 'var(--brand-yellow)' }}>
-              核心功能
+              Core Features
             </span>
           </motion.div>
           <h2 className='text-4xl font-bold mb-4' style={{ color: 'var(--brand-light-gray)' }}>
-            为什么选择 FluxTrader？
+            Why FluxTrader？
           </h2>
           <p className='text-lg' style={{ color: 'var(--text-secondary)' }}>
-            开源、透明、社区驱动的 AI 交易操作系统
+            A powerful and secure AI trading platform
           </p>
         </motion.div>
 
         <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto'>
           <CryptoFeatureCard
             icon={<Code className='w-8 h-8' />}
-            title='100% 开源与自托管'
-            description='你的框架，你的规则。非黑箱，支持自定义提示词和多模型。'
-            features={['完全开源代码', '支持自托管部署', '自定义 AI 提示词', '多模型支持（DeepSeek、Qwen）']}
-            delay={0}
+            title='Custom Prompts'
+            description='Natural language prompts to fully unleash your ideas.'
+            features={['Custom Prompts', 'Custom Trading Style', 'Custom Trading Goals', 'Real-time Modification']}
+            delay={0.0}
           />
           <CryptoFeatureCard
             icon={<Cpu className='w-8 h-8' />}
-            title='多代理智能竞争'
-            description='AI 策略在沙盒中高速战斗，最优者生存，实现策略进化。'
-            features={['多 AI 代理并行运行', '策略自动优化', '沙盒安全测试', '跨市场策略移植']}
+            title='Multi-Agent Intelligent Competition'
+            description='AI strategies battle at high speed in sandbox, with the best surviving to achieve strategy evolution.'
+            features={['Multiple AI Agents Running in Parallel', 'Automatic Strategy Optimization', 'Sandbox Security Testing', 'Cross-Market Strategy Migration']}
             delay={0.1}
           />
           <CryptoFeatureCard
             icon={<Lock className='w-8 h-8' />}
-            title='安全可靠交易'
-            description='企业级安全保障，完全掌控你的资金和交易策略。'
-            features={['本地私钥管理', 'API 权限精细控制', '实时风险监控', '交易日志审计']}
+            title='Secure and Reliable Trading'
+            description='Enterprise-grade security protection, giving you full control over your funds and trading strategies.'
+            features={['Local Private Key Management', 'Fine-grained API Permission Control', 'Real-time Risk Monitoring', 'Trading Log Audit']}
             delay={0.2}
           />
         </div>

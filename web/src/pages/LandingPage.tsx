@@ -6,7 +6,6 @@ import HeroSection from '../components/landing/HeroSection'
 import AboutSection from '../components/landing/AboutSection'
 import FeaturesSection from '../components/landing/FeaturesSection'
 import HowItWorksSection from '../components/landing/HowItWorksSection'
-import CommunitySection from '../components/landing/CommunitySection'
 import AnimatedSection from '../components/landing/AnimatedSection'
 import LoginModal from '../components/landing/LoginModal'
 import FooterSection from '../components/landing/FooterSection'
@@ -20,20 +19,19 @@ export function LandingPage() {
       <AboutSection />
       <FeaturesSection />
       <HowItWorksSection />
-      <CommunitySection />
 
       {/* CTA */}
       <AnimatedSection backgroundColor='var(--panel-bg)'>
         <div className='max-w-4xl mx-auto text-center'>
           <motion.h2 className='text-5xl font-bold mb-6' style={{ color: 'var(--brand-light-gray)' }} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            准备好定义 AI 交易的未来吗？
+            Are you ready to define the future of AI trading?
           </motion.h2>
           <motion.p className='text-xl mb-12' style={{ color: 'var(--text-secondary)' }} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
-            从加密市场起步，扩展到 TradFi。FluxTrader 是 AgentFi 的基础架构。
+            Starting from the crypto market and expanding to TradFi. FluxTrader is the infrastructure of AgentFi.
           </motion.p>
           <div className='flex flex-wrap justify-center gap-4'>
             <motion.button onClick={() => setShowLoginModal(true)} className='flex items-center gap-2 px-10 py-4 rounded-lg font-semibold text-lg' style={{ background: 'var(--brand-yellow)', color: 'var(--brand-black)' }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              立即开始
+              Start Now
               <motion.div animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
                 <ArrowRight className='w-5 h-5' />
               </motion.div>

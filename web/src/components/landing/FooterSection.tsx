@@ -14,7 +14,7 @@ export default function FooterSection() {
               FluxTrader
             </div>
             <div className='text-xs' style={{ color: '#848E9C' }}>
-              AI 交易的未来标准
+              Intelligent AI trading assistant
             </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import React from 'react'
 import { motion } from 'framer-motion'
 import { X } from 'lucide-react'
 
@@ -23,10 +24,10 @@ export default function LoginModal({ onClose }: { onClose: () => void }) {
           <X className='w-6 h-6' />
         </motion.button>
         <h2 className='text-2xl font-bold mb-6' style={{ color: 'var(--brand-light-gray)' }}>
-          访问 FluxTrader 平台
+          Access FluxTrader Platform
         </h2>
         <p className='text-sm mb-6' style={{ color: 'var(--text-secondary)' }}>
-          请选择登录或注册以访问完整的 AI 交易平台
+          Please login or register to access the full AI trading platform
         </p>
         <div className='space-y-3'>
           <motion.button
@@ -40,7 +41,7 @@ export default function LoginModal({ onClose }: { onClose: () => void }) {
             whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(52, 211, 153, 0.4)' }}
             whileTap={{ scale: 0.95 }}
           >
-            登录
+            Login
           </motion.button>
           <motion.button
             onClick={() => {
@@ -53,11 +54,10 @@ export default function LoginModal({ onClose }: { onClose: () => void }) {
             whileHover={{ scale: 1.05, borderColor: 'var(--brand-yellow)' }}
             whileTap={{ scale: 0.95 }}
           >
-            注册新账号
+            Register New Account
           </motion.button>
         </div>
       </motion.div>
     </motion.div>
   )
 }
-

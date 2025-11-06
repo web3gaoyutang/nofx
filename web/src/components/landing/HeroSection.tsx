@@ -16,64 +16,20 @@ export default function HeroSection() {
   return (
     <section className='relative pt-32 pb-20 px-4'>
       <div className='max-w-7xl mx-auto'>
-        <div className='grid lg:grid-cols-2 gap-12 items-center'>
+        <div className='grid lg:grid-cols-1 gap-12 items-center justify-center text-center'>
           {/* Left Content */}
           <motion.div className='space-y-6 relative z-10' style={{ opacity, scale }} initial='initial' animate='animate' variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
-              <motion.div
-                className='inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6'
-                style={{ background: 'rgba(52, 211, 153, 0.1)', border: '1px solid #a7f3d0' }}
-                whileHover={{ scale: 1.05, boxShadow: '0 0 20px #a7f3d0' }}
-              >
-                <Sparkles className='w-4 h-4' style={{ color: 'var(--brand-yellow)' }} />
-                <span className='text-sm font-semibold' style={{ color: 'var(--brand-yellow)' }}>
-                  3 天内 2.5K+ GitHub Stars
-                </span>
-              </motion.div>
-            </motion.div>
-
             <h1 className='text-5xl lg:text-7xl font-bold leading-tight' style={{ color: 'var(--brand-light-gray)' }}>
-              Read the Market.
+              AI Trading Agent
               <br />
-              <span style={{ color: 'var(--brand-yellow)' }}>Write the Trade.</span>
+              <span style={{ color: 'var(--brand-yellow)' }}>For Crypto</span>
             </h1>
 
-            <motion.p className='text-xl leading-relaxed' style={{ color: 'var(--text-secondary)' }} variants={fadeInUp}>
-              FluxTrader 是 AI 交易的未来标准——一个开放、社区驱动的代理式交易操作系统。支持 Binance、Aster DEX 等交易所，
-              自托管、多代理竞争，让 AI 为你自动决策、执行和优化交易。
-            </motion.p>
-
-            <div className='flex items-center gap-3 flex-wrap'>
-              <motion.a href='https://github.com/tinkle-community/fluxtrader' target='_blank' rel='noopener noreferrer' whileHover={{ scale: 1.05 }} transition={{ type: 'spring', stiffness: 400 }}>
-                <img
-                  src='https://img.shields.io/github/stars/tinkle-community/fluxtrader?style=for-the-badge&logo=github&logoColor=white&color=34d399&labelColor=1E2329'
-                  alt='GitHub Stars'
-                  className='h-7'
-                />
-              </motion.a>
-              <motion.a href='https://github.com/tinkle-community/fluxtrader/network/members' target='_blank' rel='noopener noreferrer' whileHover={{ scale: 1.05 }} transition={{ type: 'spring', stiffness: 400 }}>
-                <img
-                  src='https://img.shields.io/github/forks/tinkle-community/fluxtrader?style=for-the-badge&logo=github&logoColor=white&color=34d399&labelColor=1E2329'
-                  alt='GitHub Forks'
-                  className='h-7'
-                />
-              </motion.a>
-              <motion.a href='https://github.com/tinkle-community/fluxtrader/graphs/contributors' target='_blank' rel='noopener noreferrer' whileHover={{ scale: 1.05 }} transition={{ type: 'spring', stiffness: 400 }}>
-                <img
-                  src='https://img.shields.io/github/contributors/tinkle-community/fluxtrader?style=for-the-badge&logo=github&logoColor=white&color=34d399&labelColor=1E2329'
-                  alt='GitHub Contributors'
-                  className='h-7'
-                />
-              </motion.a>
-            </div>
-
-            <motion.p className='text-xs pt-4' style={{ color: 'var(--text-tertiary)' }} variants={fadeInUp}>
-              由 Aster DEX 和 Binance 提供支持，Amber.ac 战略投资。
+            <motion.p className='text-xl leading-relaxed mx-auto max-w-3xl' style={{ color: 'var(--text-secondary)' }} variants={fadeInUp}>
+              FluxTrader is the future standard of AI trading - a secure and controllable agent-based trading operation platform. Support exchanges such as Binance and Aster DEX
+              Self-hosting and multi-agent competition enable AI to automatically make decisions, execute and optimize transactions for you.
             </motion.p>
           </motion.div>
-
-          {/* Right Visual */}
-          <motion.img src='/images/main.png' alt='FluxTrader Platform' className='w-full opacity-90' whileHover={{ scale: 1.05, rotate: 5 }} transition={{ type: 'spring', stiffness: 300 }} />
         </div>
       </div>
     </section>

@@ -16,21 +16,18 @@ export default function HeaderBar({ onLoginClick }: { onLoginClick: () => void }
               FluxTrader
             </span>
             <span className='text-sm hidden sm:block' style={{ color: 'var(--text-secondary)' }}>
-              Agentic Trading OS
+              Agentic Trading Platform
             </span>
           </div>
 
           {/* Desktop Menu */}
           <div className='hidden md:flex items-center gap-6'>
-            {['功能', '如何运作', 'GitHub', '社区'].map((item) => (
+            {['Features', 'How it works'].map((item) => (
               <a
                 key={item}
                 href={
-                  item === 'GitHub'
-                    ? 'https://github.com/tinkle-community/fluxtrader'
-                    : item === '社区'
-                    ? 'https://t.me/fluxtrader_dev_community'
-                    : `#${item === '功能' ? 'features' : 'how-it-works'}`
+                  item === 'Features' ? '#features'
+                    : `#${item === 'Features' ? 'features' : 'how-it-works'}`
                 }
                 target={item === 'GitHub' || item === '社区' ? '_blank' : undefined}
                 rel={item === 'GitHub' || item === '社区' ? 'noopener noreferrer' : undefined}
@@ -49,7 +46,7 @@ export default function HeaderBar({ onLoginClick }: { onLoginClick: () => void }
               className='px-4 py-2 rounded font-semibold text-sm'
               style={{ background: 'var(--brand-yellow)', color: 'var(--brand-black)' }}
             >
-              登录 / 注册
+              sign in / sign up
             </button>
           </div>
 
@@ -74,7 +71,7 @@ export default function HeaderBar({ onLoginClick }: { onLoginClick: () => void }
         style={{ background: 'var(--brand-dark-gray)', borderTop: '1px solid rgba(52, 211, 153, 0.1)' }}
       >
         <div className='px-4 py-4 space-y-3'>
-          {['功能', '如何运作', 'GitHub', '社区'].map((item) => (
+          {['Features', 'How it works'].map((item) => (
             <a key={item} href={`#${item}`} className='block text-sm py-2' style={{ color: 'var(--brand-light-gray)' }}>
               {item}
             </a>
@@ -87,7 +84,7 @@ export default function HeaderBar({ onLoginClick }: { onLoginClick: () => void }
             className='w-full px-4 py-2 rounded font-semibold text-sm mt-2'
             style={{ background: 'var(--brand-yellow)', color: 'var(--brand-black)' }}
           >
-            登录 / 注册
+            sign in / sign up
           </button>
         </div>
       </motion.div>

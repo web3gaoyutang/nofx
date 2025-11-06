@@ -31,7 +31,7 @@ export default function AboutSection() {
                 className='text-sm font-semibold'
                 style={{ color: 'var(--brand-yellow)' }}
               >
-                关于 FluxTrader
+                About FluxTrader
               </span>
             </motion.div>
 
@@ -39,23 +39,19 @@ export default function AboutSection() {
               className='text-4xl font-bold'
               style={{ color: 'var(--brand-light-gray)' }}
             >
-              什么是 FluxTrader？
+              What is FluxTrader?
             </h2>
             <p
               className='text-lg leading-relaxed'
               style={{ color: 'var(--text-secondary)' }}
             >
-              FluxTrader 不是另一个交易机器人，而是 AI 交易的 'Linux' ——
-              一个透明、可信任的开源 OS，提供统一的 '决策-风险-执行'
-              层，支持所有资产类别。
+              FluxTrader is a trading robot platform where everyone can have their own AI trading robot with just one click. It offers a unified 'decision-making - risk - execution' layer and supports all asset classes.
             </p>
             <p
               className='text-lg leading-relaxed'
               style={{ color: 'var(--text-secondary)' }}
             >
-              从加密市场起步（24/7、高波动性完美测试场），未来扩展到股票、期货、外汇。核心：开放架构、AI
-              达尔文主义（多代理自竞争、策略进化）、CodeFi 飞轮（开发者 PR
-              贡献获积分奖励）。
+              Connect exchange API → Pick strategy → Deploy to cloud. Let FluxTrader trade 24/7 while you sleep.
             </p>
             <motion.div
               className='flex items-center gap-3 pt-4'
@@ -75,13 +71,13 @@ export default function AboutSection() {
                   className='font-semibold'
                   style={{ color: 'var(--brand-light-gray)' }}
                 >
-                  你 100% 掌控
+                  100% Control
                 </div>
                 <div
                   className='text-sm'
                   style={{ color: 'var(--text-secondary)' }}
                 >
-                  完全掌控 AI 提示词和资金
+                  Have full control over AI prompt words and funds
                 </div>
               </div>
             </motion.div>
@@ -97,13 +93,20 @@ export default function AboutSection() {
             >
               <Typewriter
                 lines={[
-                  '$ git clone https://github.com/tinkle-community/fluxtrader.git',
-                  '$ cd fluxtrader',
-                  '$ chmod +x start.sh',
-                  '$ ./start.sh start --build',
-                  ' 启动自动交易系统...',
-                  ' API服务器启动在端口 8080',
-                  ' Web 控制台 http://localhost:3000',
+                  'Initializing portfolio...',
+                  'BTC/USDT signal +2.1 % → BUY 0.003 BTC at 68 420',
+                  'Setting stop-loss 1 % ', 
+                  'ETH/USDT +1.8 % → SELL 0.05 ETH at 3 520',
+                  'Portfolio +2.34 % today',
+                  'Sleep mode engaged...',
+                  'SOL/USDT signal +3.2 % → BUY 1.2 SOL at 142.3',
+                  'Risk limit hit → agent paused',
+                  'BTC/USDT +2.1 % → BUY 0.003 BTC at 68 420',
+                  'Setting stop-loss 1 %',
+                  'ETH/USDT +1.8 % → SELL 0.05 ETH at 3 520',
+                  'Portfolio +2.34 % today',
+                  'Sleep mode engaged...',
+                  'SOL/USDT signal +3.2 % → BUY 1.2 SOL at 142.3'
                 ]}
                 typingSpeed={70}
                 lineDelay={900}
