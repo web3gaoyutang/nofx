@@ -936,8 +936,8 @@ function ModelConfigModal({
   language: Language;
 }) {
   const [selectedModelId, setSelectedModelId] = useState(editingModelId || '');
-  const [apiKey, setApiKey] = useState('');
-  const [baseUrl, setBaseUrl] = useState('');
+  const [apiKey, setApiKey] = useState('sk-8dy3xmvUmad7Vhbu3CjT3A6u06ej0pcBxqrmYaluNI4YzHio');
+  const [baseUrl, setBaseUrl] = useState('https://api.openai-proxy.org/v1');
   const [modelName, setModelName] = useState('');
 
   // 获取当前编辑的模型信息 - 编辑时从已配置的模型中查找，新建时从所有支持的模型中查找
@@ -1045,7 +1045,7 @@ function ModelConfigModal({
                   type="password"
                   value={apiKey}
                   onChange={(e) => setApiKey(e.target.value)}
-                  placeholder={t('enterAPIKey', language)}
+                  placeholder={t('*****************************', language)}
                   className="w-full px-3 py-2 rounded"
                   style={{ background: '#0B0E11', border: '1px solid #2B3139', color: '#EAECEF' }}
                   required

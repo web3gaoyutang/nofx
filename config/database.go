@@ -218,7 +218,7 @@ func (d *Database) initDefaultData() error {
 		id, name, provider string
 	}{
 		{"deepseek", "DeepSeek", "deepseek"},
-		{"qwen", "Qwen", "qwen"},
+		// {"qwen", "Qwen", "qwen"},
 	}
 
 	for _, model := range aiModels {
@@ -236,8 +236,8 @@ func (d *Database) initDefaultData() error {
 		id, name, typ string
 	}{
 		{"binance", "Binance Futures", "binance"},
-		{"hyperliquid", "Hyperliquid", "hyperliquid"},
-		{"aster", "Aster DEX", "aster"},
+		// {"hyperliquid", "Hyperliquid", "hyperliquid"},
+		// {"aster", "Aster DEX", "aster"},
 	}
 
 	for _, exchange := range exchanges {
