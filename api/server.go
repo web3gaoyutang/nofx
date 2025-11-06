@@ -8,6 +8,7 @@ import (
 	"nofx/auth"
 	"nofx/config"
 	"nofx/decision"
+	"nofx/email"
 	"nofx/manager"
 	"strconv"
 	"strings"
@@ -22,11 +23,12 @@ type Server struct {
 	router        *gin.Engine
 	traderManager *manager.TraderManager
 	database      *config.Database
+	emailService  *email.EmailService
 	port          int
 }
 
 // NewServer 创建API服务器
-func NewServer(traderManager *manager.TraderManager, database *config.Database, port int) *Server {
+func NewServer(traderManager *manager.TraderManager, database *config.Database, emailService *email.EmailService, port int) *Server {
 	// 设置为Release模式（减少日志输出）
 	gin.SetMode(gin.ReleaseMode)
 
@@ -39,6 +41,7 @@ func NewServer(traderManager *manager.TraderManager, database *config.Database, 
 		router:        router,
 		traderManager: traderManager,
 		database:      database,
+		emailService:  emailService,
 		port:          port,
 	}
 
@@ -77,6 +80,8 @@ func (s *Server) setupRoutes() {
 		api.POST("/login", s.handleLogin)
 		api.POST("/verify-otp", s.handleVerifyOTP)
 		api.POST("/complete-registration", s.handleCompleteRegistration)
+		api.POST("/send-email-code", s.handleSendEmailCode)
+		api.POST("/verify-email-code", s.handleVerifyEmailCode)
 		
 		// 系统支持的模型和交易所（无需认证）
 		api.GET("/supported-models", s.handleGetSupportedModels)
@@ -1189,21 +1194,22 @@ func (s *Server) handleRegister(c *gin.Context) {
 		return
 	}
 
-	// 生成OTP密钥
-	otpSecret, err := auth.GenerateOTPSecret()
+	// 生成6位验证码
+	emailCode, err := email.GenerateVerificationCode()
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "OTP密钥生成失败"})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "验证码生成失败"})
 		return
 	}
 
-	// 创建用户（未验证OTP状态）
+	// 创建用户（未验证邮箱状态）
 	userID := uuid.New().String()
 	user := &config.User{
-		ID:           userID,
-		Email:        req.Email,
-		PasswordHash: passwordHash,
-		OTPSecret:    otpSecret,
-		OTPVerified:  false,
+		ID:                   userID,
+		Email:                req.Email,
+		PasswordHash:         passwordHash,
+		EmailVerified:        false,
+		EmailCode:            emailCode,
+		EmailCodeExpiresAt:   time.Now().Add(10 * time.Minute), // 10分钟过期
 	}
 
 	err = s.database.CreateUser(user)
@@ -1212,22 +1218,26 @@ func (s *Server) handleRegister(c *gin.Context) {
 		return
 	}
 
-	// 返回OTP设置信息
-	qrCodeURL := auth.GetOTPQRCodeURL(otpSecret, req.Email)
+	// 发送验证码到邮箱
+	err = s.emailService.SendVerificationEmail(req.Email, req.Email, emailCode)
+	if err != nil {
+		log.Printf("发送验证邮件失败: %v", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "发送验证邮件失败,请稍后重试"})
+		return
+	}
+
 	c.JSON(http.StatusOK, gin.H{
-		"user_id":    userID,
-		"email":      req.Email,
-		"otp_secret": otpSecret,
-		"qr_code_url": qrCodeURL,
-		"message":    "请使用Google Authenticator扫描二维码并验证OTP",
+		"user_id": userID,
+		"email":   req.Email,
+		"message": "注册成功,验证码已发送到您的邮箱,请在10分钟内完成验证",
 	})
 }
 
-// handleCompleteRegistration 完成注册（验证OTP）
+// handleCompleteRegistration 完成注册（验证邮箱验证码）
 func (s *Server) handleCompleteRegistration(c *gin.Context) {
 	var req struct {
-		UserID  string `json:"user_id" binding:"required"`
-		OTPCode string `json:"otp_code" binding:"required"`
+		UserID    string `json:"user_id" binding:"required"`
+		EmailCode string `json:"email_code" binding:"required"`
 	}
 
 	if err := c.ShouldBindJSON(&req); err != nil {
@@ -1242,14 +1252,26 @@ func (s *Server) handleCompleteRegistration(c *gin.Context) {
 		return
 	}
 
-	// 验证OTP
-	if !auth.VerifyOTP(user.OTPSecret, req.OTPCode) {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "OTP验证码错误"})
+	// 检查邮箱是否已验证
+	if user.EmailVerified {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "邮箱已验证,请直接登录"})
 		return
 	}
 
-	// 更新用户OTP验证状态
-	err = s.database.UpdateUserOTPVerified(req.UserID, true)
+	// 检查验证码是否过期
+	if time.Now().After(user.EmailCodeExpiresAt) {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "验证码已过期,请重新获取"})
+		return
+	}
+
+	// 验证邮箱验证码
+	if user.EmailCode != req.EmailCode {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "验证码错误"})
+		return
+	}
+
+	// 更新用户邮箱验证状态
+	err = s.database.UpdateUserEmailVerified(req.UserID, true)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "更新用户状态失败"})
 		return
@@ -1357,6 +1379,99 @@ func (s *Server) handleVerifyOTP(c *gin.Context) {
 		"user_id": user.ID,
 		"email":   user.Email,
 		"message": "登录成功",
+	})
+}
+
+// handleSendEmailCode 发送邮箱验证码
+func (s *Server) handleSendEmailCode(c *gin.Context) {
+	var req struct {
+		UserID string `json:"user_id" binding:"required"`
+	}
+
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	// 获取用户信息
+	user, err := s.database.GetUserByID(req.UserID)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "用户不存在"})
+		return
+	}
+
+	// 检查邮箱是否已验证
+	if user.EmailVerified {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "邮箱已验证"})
+		return
+	}
+
+	// 生成新的验证码
+	emailCode, err := email.GenerateVerificationCode()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "验证码生成失败"})
+		return
+	}
+
+	// 更新用户的验证码和过期时间
+	err = s.database.UpdateUserEmailCode(req.UserID, emailCode, time.Now().Add(10*time.Minute))
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "更新验证码失败"})
+		return
+	}
+
+	// 发送验证码到邮箱
+	err = s.emailService.SendVerificationEmail(user.Email, user.Email, emailCode)
+	if err != nil {
+		log.Printf("发送验证邮件失败: %v", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "发送验证邮件失败,请稍后重试"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "验证码已发送到您的邮箱,请在10分钟内完成验证",
+	})
+}
+
+// handleVerifyEmailCode 验证邮箱验证码
+func (s *Server) handleVerifyEmailCode(c *gin.Context) {
+	var req struct {
+		UserID    string `json:"user_id" binding:"required"`
+		EmailCode string `json:"email_code" binding:"required"`
+	}
+
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	// 获取用户信息
+	user, err := s.database.GetUserByID(req.UserID)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "用户不存在"})
+		return
+	}
+
+	// 检查邮箱是否已验证
+	if user.EmailVerified {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "邮箱已验证"})
+		return
+	}
+
+	// 检查验证码是否过期
+	if time.Now().After(user.EmailCodeExpiresAt) {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "验证码已过期,请重新获取"})
+		return
+	}
+
+	// 验证邮箱验证码
+	if user.EmailCode != req.EmailCode {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "验证码错误"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "验证码正确",
 	})
 }
 
