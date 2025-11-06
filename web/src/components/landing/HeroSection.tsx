@@ -1,5 +1,4 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Sparkles } from 'lucide-react'
 
 export default function HeroSection() {
   const { scrollYProgress } = useScroll()
