@@ -85,15 +85,15 @@ export function RegisterPage() {
             style={{ color: '#848E9C' }}
           >
             <ArrowLeft className="w-4 h-4" />
-            返回首页
+            Back
           </button>
         )}
 
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+          {/* <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center">
             <img src="/images/logo.png" alt="FluxTrader Logo" className="w-16 h-16 object-contain" />
-          </div>
+          </div> */}
           <h1 className="text-2xl font-bold" style={{ color: '#EAECEF' }}>
             {t('appTitle', language)}
           </h1>
@@ -205,7 +205,7 @@ export function RegisterPage() {
                       <p className="text-xs mb-2" style={{ color: '#848E9C' }}>{t('qrCodeHint', language)}</p>
                       <div className="bg-white p-2 rounded text-center">
                         <img src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrCodeURL)}`} 
-                             alt="QR Code" className="mx-auto" />
+                            alt="QR Code" className="mx-auto" />
                       </div>
                     </div>
                   )}
@@ -306,7 +306,7 @@ export function RegisterPage() {
         {step === 'register' && (
           <div className="text-center mt-6">
             <p className="text-sm" style={{ color: '#848E9C' }}>
-              已有账户？{' '}
+              Already have an account?{' '}
               <button
                 onClick={() => {
                   window.history.pushState({}, '', '/login');
@@ -315,7 +315,7 @@ export function RegisterPage() {
                 className="font-semibold hover:underline"
                 style={{ color: '#34d399' }}
               >
-                立即登录
+                Sign In
               </button>
             </p>
           </div>

@@ -11,7 +11,7 @@ export default function HeaderBar({ onLoginClick }: { onLoginClick: () => void }
         <div className='flex items-center justify-between h-16'>
           {/* Logo */}
           <div className='flex items-center gap-3'>
-            <img src='/images/logo.png' alt='FluxTrader Logo' className='w-8 h-8' />
+            {/* <img src='/images/logo.png' alt='FluxTrader Logo' className='w-8 h-8' /> */}
             <span className='text-xl font-bold' style={{ color: 'var(--brand-yellow)' }}>
               FluxTrader
             </span>
@@ -46,7 +46,7 @@ export default function HeaderBar({ onLoginClick }: { onLoginClick: () => void }
               className='px-4 py-2 rounded font-semibold text-sm'
               style={{ background: 'var(--brand-yellow)', color: 'var(--brand-black)' }}
             >
-              sign in / sign up
+              Sign In / Sign Up
             </button>
           </div>
 
@@ -84,7 +84,7 @@ export default function HeaderBar({ onLoginClick }: { onLoginClick: () => void }
             className='w-full px-4 py-2 rounded font-semibold text-sm mt-2'
             style={{ background: 'var(--brand-yellow)', color: 'var(--brand-black)' }}
           >
-            sign in / sign up
+            Sign In / Sign Up
           </button>
         </div>
       </motion.div>

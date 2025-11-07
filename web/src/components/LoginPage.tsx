@@ -66,14 +66,14 @@ export function LoginPage() {
             style={{ color: '#848E9C' }}
           >
             <ArrowLeft className="w-4 h-4" />
-            返回首页
+            Back
           </button>
 
           {/* Logo */}
           <div className="text-center mb-8">
-            <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+            {/* <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center">
               <img src="/images/logo.png" alt="FluxTrader Logo" className="w-16 h-16 object-contain" />
-            </div>
+            </div> */}
             <h1 className="text-2xl font-bold" style={{ color: '#EAECEF' }}>
               {t('loginTitle', language)}
             </h1>
