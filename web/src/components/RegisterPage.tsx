@@ -72,10 +72,10 @@ export function RegisterPage() {
       if (response.ok) {
         setCountdown(60);
       } else {
-        setError(data.error || '重新发送失败');
+        setError(data.error || 'Retransmission failed');
       }
     } catch (err) {
-      setError('网络错误,请稍后重试');
+      setError('Network error. Please try again later');
     }
 
     setLoading(false);
@@ -199,12 +199,12 @@ export function RegisterPage() {
               <div className="text-center mb-4">
                 <div className="text-5xl mb-4">📧</div>
                 <h3 className="text-lg font-semibold mb-2" style={{ color: '#EAECEF' }}>
-                  验证您的邮箱
+                  Verify your email
                 </h3>
                 <p className="text-sm" style={{ color: '#848E9C' }}>
-                  我们已向 <span className="font-semibold" style={{ color: '#34d399' }}>{email}</span> 发送了一封验证邮件
+                  We have sent a verification email to <span className="font-semibold" style={{ color: '#34d399' }}>{email}</span>
                   <br />
-                  请输入邮件中的6位验证码
+                  Please enter the 6-digit verification code in the email
                   {t('setupTwoFactorDesc', language)}
                 </p>
               </div>
@@ -287,7 +287,7 @@ export function RegisterPage() {
 
               <div>
                 <label className="block text-sm font-semibold mb-2" style={{ color: '#EAECEF' }}>
-                  验证码
+                  Verification code
                 </label>
                 <input
                   type="text"
@@ -302,7 +302,7 @@ export function RegisterPage() {
               </div>
 
               <div className="flex items-center justify-center gap-2 text-sm" style={{ color: '#848E9C' }}>
-                <span>没有收到验证码?</span>
+                <span>Didn't receive the verification code?</span>
                 <button
                   type="button"
                   onClick={handleResendCode}
@@ -310,7 +310,7 @@ export function RegisterPage() {
                   className="font-semibold hover:underline disabled:opacity-50 disabled:no-underline"
                   style={{ color: countdown > 0 ? '#848E9C' : '#34d399' }}
                 >
-                  {countdown > 0 ? `重新发送 (${countdown}s)` : '重新发送'}
+                  {countdown > 0 ? `Resend (${countdown}s)` : 'Resend'}
                 </button>
               </div>
 
@@ -326,7 +326,7 @@ export function RegisterPage() {
                 className="w-full px-4 py-2 rounded text-sm font-semibold transition-all hover:scale-105 disabled:opacity-50"
                 style={{ background: '#34d399', color: '#000' }}
               >
-                {loading ? t('loading', language) : '完成注册'}
+                {loading ? t('loading', language) : 'Complete the registration'}
               </button>
             </form>
           )}
