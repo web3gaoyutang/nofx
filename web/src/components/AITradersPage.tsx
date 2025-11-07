@@ -1776,10 +1776,10 @@ function ExchangeConfigModal({
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div
-        className="bg-gray-800 rounded-lg p-6 w-full max-w-lg relative"
+        className="bg-gray-800 rounded-lg w-full max-w-lg relative flex flex-col max-h-[90vh]"
         style={{ background: '#1E2329' }}
       >
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between p-6 pb-4 flex-shrink-0">
           <h3 className="text-xl font-bold" style={{ color: '#EAECEF' }}>
             {editingExchangeId
               ? t('editExchange', language)
@@ -1817,7 +1817,8 @@ function ExchangeConfigModal({
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="flex flex-col flex-1 min-h-0">
+          <div className="px-6 overflow-y-auto flex-1 space-y-4">
           {!editingExchangeId && (
             <div>
               <label
@@ -2268,7 +2269,8 @@ function ExchangeConfigModal({
             </>
           )}
 
-          <div className="flex gap-3 mt-6">
+          </div>
+          <div className="flex gap-3 p-6 pt-4 flex-shrink-0 border-t" style={{ borderColor: '#2B3139' }}>
             <button
               type="button"
               onClick={onClose}
