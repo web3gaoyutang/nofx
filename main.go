@@ -7,6 +7,7 @@ import (
 	"nofx/api"
 	"nofx/auth"
 	"nofx/config"
+	"nofx/email"
 	"nofx/manager"
 	"nofx/market"
 	"nofx/pool"
@@ -255,8 +256,18 @@ func main() {
 		}
 	}
 
+	// 初始化邮件服务
+	emailConfig := email.EmailConfig{
+		SenderEmail:  "2262634136@qq.com",
+		SMTPServer:   "smtp.qq.com",
+		SMTPPort:     465,
+		SMTPUsername: "2262634136@qq.com",
+		SMTPPassword: "xsxvefosihktebfe",
+	}
+	emailService := email.NewEmailService(emailConfig)
+
 	// 创建并启动API服务器
-	apiServer := api.NewServer(traderManager, database, apiPort)
+	apiServer := api.NewServer(traderManager, database, emailService, apiPort)
 	go func() {
 		if err := apiServer.Start(); err != nil {
 			log.Printf("❌ API服务器错误: %v", err)

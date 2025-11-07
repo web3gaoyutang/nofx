@@ -7,16 +7,23 @@ import { ArrowLeft } from 'lucide-react';
 export function RegisterPage() {
   const { language } = useLanguage();
   const { register, completeRegistration } = useAuth();
-  const [step, setStep] = useState<'register' | 'setup-otp' | 'verify-otp'>('register');
+  const [step, setStep] = useState<'register' | 'verify-email'>('register');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [otpCode, setOtpCode] = useState('');
+  const [emailCode, setEmailCode] = useState('');
   const [userID, setUserID] = useState('');
-  const [otpSecret, setOtpSecret] = useState('');
-  const [qrCodeURL, setQrCodeURL] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [countdown, setCountdown] = useState(0);
+
+  // 倒计时效果
+  React.useEffect(() => {
+    if (countdown > 0) {
+      const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [countdown]);
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,40 +42,58 @@ export function RegisterPage() {
     setLoading(true);
 
     const result = await register(email, password);
-    
+
     if (result.success && result.userID) {
       setUserID(result.userID);
-      setOtpSecret(result.otpSecret || '');
-      setQrCodeURL(result.qrCodeURL || '');
-      setStep('setup-otp');
+      setStep('verify-email');
+      setCountdown(60); // 60秒倒计时
     } else {
       setError(result.message || t('registrationFailed', language));
     }
-    
+
     setLoading(false);
   };
 
-  const handleSetupComplete = () => {
-    setStep('verify-otp');
+  const handleResendCode = async () => {
+    if (countdown > 0) return;
+
+    setError('');
+    setLoading(true);
+
+    try {
+      const response = await fetch('/api/send-email-code', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user_id: userID }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setCountdown(60);
+      } else {
+        setError(data.error || '重新发送失败');
+      }
+    } catch (err) {
+      setError('网络错误,请稍后重试');
+    }
+
+    setLoading(false);
   };
 
-  const handleOTPVerify = async (e: React.FormEvent) => {
+  const handleEmailVerify = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
-    const result = await completeRegistration(userID, otpCode);
-    
+    const result = await completeRegistration(userID, emailCode);
+
     if (!result.success) {
       setError(result.message || t('registrationFailed', language));
     }
     // 成功的话AuthContext会自动处理登录状态
-    
-    setLoading(false);
-  };
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
+    setLoading(false);
   };
 
   return (
@@ -99,8 +124,7 @@ export function RegisterPage() {
           </h1>
           <p className="text-sm mt-2" style={{ color: '#848E9C' }}>
             {step === 'register' && t('registerTitle', language)}
-            {step === 'setup-otp' && t('setupTwoFactor', language)}
-            {step === 'verify-otp' && t('verifyOTP', language)}
+            {step === 'verify-email' && '验证邮箱'}
           </p>
         </div>
 
@@ -170,14 +194,17 @@ export function RegisterPage() {
             </form>
           )}
 
-          {step === 'setup-otp' && (
-            <div className="space-y-4">
-              <div className="text-center">
-                <div className="text-4xl mb-2">📱</div>
+          {step === 'verify-email' && (
+            <form onSubmit={handleEmailVerify} className="space-y-4">
+              <div className="text-center mb-4">
+                <div className="text-5xl mb-4">📧</div>
                 <h3 className="text-lg font-semibold mb-2" style={{ color: '#EAECEF' }}>
-                  {t('setupTwoFactor', language)}
+                  验证您的邮箱
                 </h3>
                 <p className="text-sm" style={{ color: '#848E9C' }}>
+                  我们已向 <span className="font-semibold" style={{ color: '#34d399' }}>{email}</span> 发送了一封验证邮件
+                  <br />
+                  请输入邮件中的6位验证码
                   {t('setupTwoFactorDesc', language)}
                 </p>
               </div>
@@ -199,21 +226,21 @@ export function RegisterPage() {
                   <p className="text-xs mb-2" style={{ color: '#848E9C' }}>
                     {t('step2Desc', language)}
                   </p>
-                  
+
                   {qrCodeURL && (
                     <div className="mt-2">
                       <p className="text-xs mb-2" style={{ color: '#848E9C' }}>{t('qrCodeHint', language)}</p>
                       <div className="bg-white p-2 rounded text-center">
-                        <img src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrCodeURL)}`} 
+                        <img src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrCodeURL)}`}
                             alt="QR Code" className="mx-auto" />
                       </div>
                     </div>
                   )}
-                  
+
                   <div className="mt-2">
                     <p className="text-xs mb-1" style={{ color: '#848E9C' }}>{t('otpSecret', language)}</p>
                     <div className="flex items-center gap-2">
-                      <code className="flex-1 px-2 py-1 text-xs rounded font-mono" 
+                      <code className="flex-1 px-2 py-1 text-xs rounded font-mono"
                             style={{ background: '#2B3139', color: '#EAECEF' }}>
                         {otpSecret}
                       </code>
@@ -260,18 +287,31 @@ export function RegisterPage() {
 
               <div>
                 <label className="block text-sm font-semibold mb-2" style={{ color: '#EAECEF' }}>
-                  {t('otpCode', language)}
+                  验证码
                 </label>
                 <input
                   type="text"
-                  value={otpCode}
-                  onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                  className="w-full px-3 py-2 rounded text-center text-2xl font-mono"
-                  style={{ background: '#0B0E11', border: '1px solid #2B3139', color: '#EAECEF' }}
-                  placeholder={t('otpPlaceholder', language)}
+                  value={emailCode}
+                  onChange={(e) => setEmailCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                  className="w-full px-3 py-2 rounded text-center text-2xl font-mono tracking-widest"
+                  style={{ background: '#0B0E11', border: '1px solid #2B3139', color: '#EAECEF', letterSpacing: '0.5em' }}
+                  placeholder="000000"
                   maxLength={6}
                   required
                 />
+              </div>
+
+              <div className="flex items-center justify-center gap-2 text-sm" style={{ color: '#848E9C' }}>
+                <span>没有收到验证码?</span>
+                <button
+                  type="button"
+                  onClick={handleResendCode}
+                  disabled={countdown > 0}
+                  className="font-semibold hover:underline disabled:opacity-50 disabled:no-underline"
+                  style={{ color: countdown > 0 ? '#848E9C' : '#34d399' }}
+                >
+                  {countdown > 0 ? `重新发送 (${countdown}s)` : '重新发送'}
+                </button>
               </div>
 
               {error && (
@@ -280,24 +320,14 @@ export function RegisterPage() {
                 </div>
               )}
 
-              <div className="flex gap-3">
-                <button
-                  type="button"
-                  onClick={() => setStep('setup-otp')}
-                  className="flex-1 px-4 py-2 rounded text-sm font-semibold"
-                  style={{ background: '#2B3139', color: '#848E9C' }}
-                >
-                  {t('back', language)}
-                </button>
-                <button
-                  type="submit"
-                  disabled={loading || otpCode.length !== 6}
-                  className="flex-1 px-4 py-2 rounded text-sm font-semibold transition-all hover:scale-105 disabled:opacity-50"
-                  style={{ background: '#34d399', color: '#000' }}
-                >
-                  {loading ? t('loading', language) : t('completeRegistration', language)}
-                </button>
-              </div>
+              <button
+                type="submit"
+                disabled={loading || emailCode.length !== 6}
+                className="w-full px-4 py-2 rounded text-sm font-semibold transition-all hover:scale-105 disabled:opacity-50"
+                style={{ background: '#34d399', color: '#000' }}
+              >
+                {loading ? t('loading', language) : '完成注册'}
+              </button>
             </form>
           )}
         </div>

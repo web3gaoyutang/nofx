@@ -192,6 +192,9 @@ func (d *Database) createTables() error {
 		`ALTER TABLE traders ADD COLUMN system_prompt_template TEXT DEFAULT 'default'`, // 系统提示词模板名称
 		`ALTER TABLE ai_models ADD COLUMN custom_api_url TEXT DEFAULT ''`,              // 自定义API地址
 		`ALTER TABLE ai_models ADD COLUMN custom_model_name TEXT DEFAULT ''`,           // 自定义模型名称
+		`ALTER TABLE users ADD COLUMN email_verified BOOLEAN DEFAULT 0`,                // 邮箱是否已验证
+		`ALTER TABLE users ADD COLUMN email_code TEXT DEFAULT ''`,                      // 邮箱验证码
+		`ALTER TABLE users ADD COLUMN email_code_expires_at DATETIME`,                  // 验证码过期时间
 	}
 
 	for _, query := range alterQueries {
@@ -215,7 +218,7 @@ func (d *Database) initDefaultData() error {
 		id, name, provider string
 	}{
 		{"deepseek", "DeepSeek", "deepseek"},
-		{"qwen", "Qwen", "qwen"},
+		// {"qwen", "Qwen", "qwen"},
 	}
 
 	for _, model := range aiModels {
@@ -233,8 +236,8 @@ func (d *Database) initDefaultData() error {
 		id, name, typ string
 	}{
 		{"binance", "Binance Futures", "binance"},
-		{"hyperliquid", "Hyperliquid", "hyperliquid"},
-		{"aster", "Aster DEX", "aster"},
+		// {"hyperliquid", "Hyperliquid", "hyperliquid"},
+		// {"aster", "Aster DEX", "aster"},
 	}
 
 	for _, exchange := range exchanges {
@@ -358,13 +361,16 @@ func (d *Database) migrateExchangesTable() error {
 
 // User 用户配置
 type User struct {
-	ID           string    `json:"id"`
-	Email        string    `json:"email"`
-	PasswordHash string    `json:"-"` // 不返回到前端
-	OTPSecret    string    `json:"-"` // 不返回到前端
-	OTPVerified  bool      `json:"otp_verified"`
-	CreatedAt    time.Time `json:"created_at"`
-	UpdatedAt    time.Time `json:"updated_at"`
+	ID                   string    `json:"id"`
+	Email                string    `json:"email"`
+	PasswordHash         string    `json:"-"` // 不返回到前端
+	OTPSecret            string    `json:"-"` // 不返回到前端
+	OTPVerified          bool      `json:"otp_verified"`
+	EmailVerified        bool      `json:"email_verified"`
+	EmailCode            string    `json:"-"` // 不返回到前端
+	EmailCodeExpiresAt   time.Time `json:"-"` // 不返回到前端
+	CreatedAt            time.Time `json:"created_at"`
+	UpdatedAt            time.Time `json:"updated_at"`
 }
 
 // AIModelConfig AI模型配置
@@ -448,9 +454,9 @@ func GenerateOTPSecret() (string, error) {
 // CreateUser 创建用户
 func (d *Database) CreateUser(user *User) error {
 	_, err := d.db.Exec(`
-		INSERT INTO users (id, email, password_hash, otp_secret, otp_verified)
-		VALUES (?, ?, ?, ?, ?)
-	`, user.ID, user.Email, user.PasswordHash, user.OTPSecret, user.OTPVerified)
+		INSERT INTO users (id, email, password_hash, otp_secret, otp_verified, email_verified, email_code, email_code_expires_at)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+	`, user.ID, user.Email, user.PasswordHash, user.OTPSecret, user.OTPVerified, user.EmailVerified, user.EmailCode, user.EmailCodeExpiresAt)
 	return err
 }
 
@@ -483,15 +489,26 @@ func (d *Database) EnsureAdminUser() error {
 // GetUserByEmail 通过邮箱获取用户
 func (d *Database) GetUserByEmail(email string) (*User, error) {
 	var user User
+	var emailCodeExpiresAt sql.NullTime
 	err := d.db.QueryRow(`
-		SELECT id, email, password_hash, otp_secret, otp_verified, created_at, updated_at
+		SELECT id, email, password_hash,
+		       COALESCE(otp_secret, '') as otp_secret,
+		       COALESCE(otp_verified, 0) as otp_verified,
+		       COALESCE(email_verified, 0) as email_verified,
+		       COALESCE(email_code, '') as email_code,
+		       email_code_expires_at,
+		       created_at, updated_at
 		FROM users WHERE email = ?
 	`, email).Scan(
 		&user.ID, &user.Email, &user.PasswordHash, &user.OTPSecret,
-		&user.OTPVerified, &user.CreatedAt, &user.UpdatedAt,
+		&user.OTPVerified, &user.EmailVerified, &user.EmailCode, &emailCodeExpiresAt,
+		&user.CreatedAt, &user.UpdatedAt,
 	)
 	if err != nil {
 		return nil, err
+	}
+	if emailCodeExpiresAt.Valid {
+		user.EmailCodeExpiresAt = emailCodeExpiresAt.Time
 	}
 	return &user, nil
 }
@@ -499,15 +516,26 @@ func (d *Database) GetUserByEmail(email string) (*User, error) {
 // GetUserByID 通过ID获取用户
 func (d *Database) GetUserByID(userID string) (*User, error) {
 	var user User
+	var emailCodeExpiresAt sql.NullTime
 	err := d.db.QueryRow(`
-		SELECT id, email, password_hash, otp_secret, otp_verified, created_at, updated_at
+		SELECT id, email, password_hash,
+		       COALESCE(otp_secret, '') as otp_secret,
+		       COALESCE(otp_verified, 0) as otp_verified,
+		       COALESCE(email_verified, 0) as email_verified,
+		       COALESCE(email_code, '') as email_code,
+		       email_code_expires_at,
+		       created_at, updated_at
 		FROM users WHERE id = ?
 	`, userID).Scan(
 		&user.ID, &user.Email, &user.PasswordHash, &user.OTPSecret,
-		&user.OTPVerified, &user.CreatedAt, &user.UpdatedAt,
+		&user.OTPVerified, &user.EmailVerified, &user.EmailCode, &emailCodeExpiresAt,
+		&user.CreatedAt, &user.UpdatedAt,
 	)
 	if err != nil {
 		return nil, err
+	}
+	if emailCodeExpiresAt.Valid {
+		user.EmailCodeExpiresAt = emailCodeExpiresAt.Time
 	}
 	return &user, nil
 }
@@ -534,6 +562,18 @@ func (d *Database) GetAllUsers() ([]string, error) {
 // UpdateUserOTPVerified 更新用户OTP验证状态
 func (d *Database) UpdateUserOTPVerified(userID string, verified bool) error {
 	_, err := d.db.Exec(`UPDATE users SET otp_verified = ? WHERE id = ?`, verified, userID)
+	return err
+}
+
+// UpdateUserEmailVerified 更新用户邮箱验证状态
+func (d *Database) UpdateUserEmailVerified(userID string, verified bool) error {
+	_, err := d.db.Exec(`UPDATE users SET email_verified = ? WHERE id = ?`, verified, userID)
+	return err
+}
+
+// UpdateUserEmailCode 更新用户邮箱验证码
+func (d *Database) UpdateUserEmailCode(userID, emailCode string, expiresAt time.Time) error {
+	_, err := d.db.Exec(`UPDATE users SET email_code = ?, email_code_expires_at = ? WHERE id = ?`, emailCode, expiresAt, userID)
 	return err
 }
 
