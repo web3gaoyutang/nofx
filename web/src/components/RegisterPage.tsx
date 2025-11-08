@@ -7,7 +7,7 @@ import { ArrowLeft } from 'lucide-react';
 export function RegisterPage() {
   const { language } = useLanguage();
   const { register, completeRegistration } = useAuth();
-  const [step, setStep] = useState<'register' | 'verify-email' | 'verify-otp'>('register');
+  const [step, setStep] = useState<'register' | 'verify-email'>('register');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -16,8 +16,6 @@ export function RegisterPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [countdown, setCountdown] = useState(0);
-  const [qrCodeURL, setQrCodeURL] = useState('');
-  const [otpSecret, setOtpSecret] = useState('');
 
   // 倒计时效果
   React.useEffect(() => {
@@ -26,10 +24,6 @@ export function RegisterPage() {
       return () => clearTimeout(timer);
     }
   }, [countdown]);
-
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-  };
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,11 +45,7 @@ export function RegisterPage() {
 
     if (result.success && result.userID) {
       setUserID(result.userID);
-      if (result.otpSecret && result.qrCodeURL) {
-        setOtpSecret(result.otpSecret);
-        setQrCodeURL(result.qrCodeURL);
-        setStep('verify-email');
-      }
+      setStep('verify-email');
       setCountdown(60); // 60秒倒计时
     } else {
       setError(result.message || t('registrationFailed', language));
@@ -82,10 +72,10 @@ export function RegisterPage() {
       if (response.ok) {
         setCountdown(60);
       } else {
-        setError(data.error || 'Retransmission failed');
+        setError(data.error || '重新发送失败');
       }
     } catch (err) {
-      setError('Network error. Please try again later');
+      setError('网络错误,请稍后重试');
     }
 
     setLoading(false);
@@ -96,26 +86,6 @@ export function RegisterPage() {
     setError('');
     setLoading(true);
 
-    const result = await completeRegistration(userID, emailCode);
-
-    if (!result.success) {
-      setError(result.message || t('registrationFailed', language));
-    }
-    // 成功的话AuthContext会自动处理登录状态
-
-    setLoading(false);
-  };
-
-  const handleSetupComplete = () => {
-    setStep('verify-otp');
-  };
-
-  const handleOTPVerify = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    setLoading(true);
-
-    // 使用completeRegistration来完成注册过程
     const result = await completeRegistration(userID, emailCode);
 
     if (!result.success) {
@@ -235,89 +205,12 @@ export function RegisterPage() {
                   We have sent a verification email to <span className="font-semibold" style={{ color: '#34d399' }}>{email}</span>
                   <br />
                   Please enter the 6-digit verification code in the email
-                  {t('setupTwoFactorDesc', language)}
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <div className="p-3 rounded" style={{ background: '#0B0E11', border: '1px solid #2B3139' }}>
-                  <p className="text-sm font-semibold mb-2" style={{ color: '#EAECEF' }}>
-                    {t('step1Title', language)}
-                  </p>
-                  <p className="text-xs" style={{ color: '#848E9C' }}>
-                    {t('step1Desc', language)}
-                  </p>
-                </div>
-
-                <div className="p-3 rounded" style={{ background: '#0B0E11', border: '1px solid #2B3139' }}>
-                  <p className="text-sm font-semibold mb-2" style={{ color: '#EAECEF' }}>
-                    {t('step2Title', language)}
-                  </p>
-                  <p className="text-xs mb-2" style={{ color: '#848E9C' }}>
-                    {t('step2Desc', language)}
-                  </p>
-
-                  {qrCodeURL && (
-                    <div className="mt-2">
-                      <p className="text-xs mb-2" style={{ color: '#848E9C' }}>{t('qrCodeHint', language)}</p>
-                      <div className="bg-white p-2 rounded text-center">
-                        <img src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrCodeURL)}`}
-                            alt="QR Code" className="mx-auto" />
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="mt-2">
-                    <p className="text-xs mb-1" style={{ color: '#848E9C' }}>{t('otpSecret', language)}</p>
-                    <div className="flex items-center gap-2">
-                      <code className="flex-1 px-2 py-1 text-xs rounded font-mono"
-                            style={{ background: '#2B3139', color: '#EAECEF' }}>
-                        {otpSecret}
-                      </code>
-                      <button
-                        onClick={() => copyToClipboard(otpSecret)}
-                        className="px-2 py-1 text-xs rounded"
-                        style={{ background: '#34d399', color: '#000' }}
-                      >
-                        {t('copy', language)}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="p-3 rounded" style={{ background: '#0B0E11', border: '1px solid #2B3139' }}>
-                  <p className="text-sm font-semibold mb-2" style={{ color: '#EAECEF' }}>
-                    {t('step3Title', language)}
-                  </p>
-                  <p className="text-xs" style={{ color: '#848E9C' }}>
-                    {t('step3Desc', language)}
-                  </p>
-                </div>
-              </div>
-
-              <button
-                onClick={handleSetupComplete}
-                className="w-full px-4 py-2 rounded text-sm font-semibold transition-all hover:scale-105"
-                style={{ background: '#34d399', color: '#000' }}
-              >
-                {t('setupCompleteContinue', language)}
-              </button>
-            </form>
-          )}
-
-          {step === 'verify-otp' && (
-            <form onSubmit={handleOTPVerify} className="space-y-4">
-              <div className="text-center mb-4">
-                <div className="text-4xl mb-2">🔐</div>
-                <p className="text-sm" style={{ color: '#848E9C' }}>
-                  {t('enterOTPCode', language)}<br />
-                  {t('completeRegistrationSubtitle', language)}
                 </p>
               </div>
 
               <div>
                 <label className="block text-sm font-semibold mb-2" style={{ color: '#EAECEF' }}>
-                  Verification code
+                  verification code
                 </label>
                 <input
                   type="text"
@@ -332,7 +225,7 @@ export function RegisterPage() {
               </div>
 
               <div className="flex items-center justify-center gap-2 text-sm" style={{ color: '#848E9C' }}>
-                <span>Didn't receive the verification code?</span>
+                <span>Did not receive the verification code?</span>
                 <button
                   type="button"
                   onClick={handleResendCode}
@@ -340,7 +233,7 @@ export function RegisterPage() {
                   className="font-semibold hover:underline disabled:opacity-50 disabled:no-underline"
                   style={{ color: countdown > 0 ? '#848E9C' : '#34d399' }}
                 >
-                  {countdown > 0 ? `Resend (${countdown}s)` : 'Resend'}
+                  {countdown > 0 ? `重新发送 (${countdown}s)` : '重新发送'}
                 </button>
               </div>
 
@@ -356,7 +249,7 @@ export function RegisterPage() {
                 className="w-full px-4 py-2 rounded text-sm font-semibold transition-all hover:scale-105 disabled:opacity-50"
                 style={{ background: '#34d399', color: '#000' }}
               >
-                {loading ? t('loading', language) : 'Complete the registration'}
+                {loading ? t('loading', language) : '完成注册'}
               </button>
             </form>
           )}
@@ -375,7 +268,7 @@ export function RegisterPage() {
                 className="font-semibold hover:underline"
                 style={{ color: '#34d399' }}
               >
-                Sign In
+                Login
               </button>
             </p>
           </div>

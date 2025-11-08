@@ -1324,21 +1324,34 @@ func (s *Server) handleLogin(c *gin.Context) {
 	}
 
 	// 检查OTP是否已验证
-	if !user.OTPVerified {
-		c.JSON(http.StatusUnauthorized, gin.H{
-			"error": "账户未完成OTP设置",
-			"user_id": user.ID,
-			"requires_otp_setup": true,
-		})
+	// if !user.OTPVerified {
+	// 	c.JSON(http.StatusUnauthorized, gin.H{
+	// 		"error": "账户未完成OTP设置",
+	// 		"user_id": user.ID,
+	// 		"requires_otp_setup": true,
+	// 	})
+	// 	return
+	// }
+
+	// // 返回需要OTP验证的状态
+	// c.JSON(http.StatusOK, gin.H{
+	// 	"user_id": user.ID,
+	// 	"email":   user.Email,
+	// 	"message": "请输入Google Authenticator验证码",
+	// 	"requires_otp": true,
+	// })
+	// 生成JWT token
+	token, err := auth.GenerateJWT(user.ID, user.Email)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "生成token失败"})
 		return
 	}
 
-	// 返回需要OTP验证的状态
 	c.JSON(http.StatusOK, gin.H{
+		"token":   token,
 		"user_id": user.ID,
 		"email":   user.Email,
-		"message": "请输入Google Authenticator验证码",
-		"requires_otp": true,
+		"message": "登录成功",
 	})
 }
 
