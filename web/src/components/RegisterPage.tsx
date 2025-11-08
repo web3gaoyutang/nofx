@@ -7,7 +7,7 @@ import { ArrowLeft } from 'lucide-react';
 export function RegisterPage() {
   const { language } = useLanguage();
   const { register, completeRegistration } = useAuth();
-  const [step, setStep] = useState<'register' | 'verify-email'>('register');
+  const [step, setStep] = useState<'register' | 'verify-email' | 'verify-otp'>('register');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -16,6 +16,8 @@ export function RegisterPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [countdown, setCountdown] = useState(0);
+  const [qrCodeURL, setQrCodeURL] = useState('');
+  const [otpSecret, setOtpSecret] = useState('');
 
   // 倒计时效果
   React.useEffect(() => {
@@ -24,6 +26,10 @@ export function RegisterPage() {
       return () => clearTimeout(timer);
     }
   }, [countdown]);
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+  };
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,7 +51,11 @@ export function RegisterPage() {
 
     if (result.success && result.userID) {
       setUserID(result.userID);
-      setStep('verify-email');
+      if (result.otpSecret && result.qrCodeURL) {
+        setOtpSecret(result.otpSecret);
+        setQrCodeURL(result.qrCodeURL);
+        setStep('verify-email');
+      }
       setCountdown(60); // 60秒倒计时
     } else {
       setError(result.message || t('registrationFailed', language));
@@ -86,6 +96,26 @@ export function RegisterPage() {
     setError('');
     setLoading(true);
 
+    const result = await completeRegistration(userID, emailCode);
+
+    if (!result.success) {
+      setError(result.message || t('registrationFailed', language));
+    }
+    // 成功的话AuthContext会自动处理登录状态
+
+    setLoading(false);
+  };
+
+  const handleSetupComplete = () => {
+    setStep('verify-otp');
+  };
+
+  const handleOTPVerify = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    // 使用completeRegistration来完成注册过程
     const result = await completeRegistration(userID, emailCode);
 
     if (!result.success) {
@@ -272,7 +302,7 @@ export function RegisterPage() {
               >
                 {t('setupCompleteContinue', language)}
               </button>
-            </div>
+            </form>
           )}
 
           {step === 'verify-otp' && (
