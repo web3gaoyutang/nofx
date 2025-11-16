@@ -247,7 +247,7 @@ export const translations = {
     confirmDeleteExchange: 'Are you sure you want to delete this exchange configuration?',
     pleaseSelectExchange: 'Please select an exchange',
     exchangeConfigWarning1: '• API keys will be encrypted, recommend using read-only or futures trading permissions',
-    exchangeConfigWarning2: '• Do not grant withdrawal permissions to ensure fund security, whitelist address: 35.175.228.51',
+    exchangeConfigWarning2: '• Do not grant withdrawal permissions to ensure fund security, whitelist address: 43.206.124.83',
     exchangeConfigWarning3: '• After deleting configuration, related traders will not be able to trade',
     edit: 'Edit',
 
@@ -564,7 +564,7 @@ export const translations = {
     confirmDeleteExchange: '确定要删除此交易所配置吗？',
     pleaseSelectExchange: '请选择交易所',
     exchangeConfigWarning1: '• API密钥将被加密存储，建议使用只读或期货交易权限',
-    exchangeConfigWarning2: '• 不要授予提现权限，确保资金安全, 白名单地址：35.175.228.51',
+    exchangeConfigWarning2: '• 不要授予提现权限，确保资金安全, 白名单地址：43.206.124.83',
     exchangeConfigWarning3: '• 删除配置后，相关交易员将无法正常交易',
     edit: '编辑',
 
